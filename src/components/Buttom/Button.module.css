@@ -35,3 +35,49 @@
     background: #E8E8E8;
     color: #8D8E97;
 }
+.className {
+    background-color: #FD3419;
+}
+
+
+
+
+/* 
+@import "src/assers/mixins";
+@import "src/assers/color";
+
+
+.primaryButton {
+    @include button;
+    background-color: $primary;
+    color: $white;
+    &:hover {
+        background-color: $primary-secondary;
+    }
+}
+
+.secondaryButton {
+    @include button;
+    background-color: $light;
+    color: $secondary;
+    &:hover {
+        background-color: $medium;
+    }
+}
+
+.ErreButton {
+    @include button;
+    color: $Error;
+    &:hover {
+        border-color: $medium;
+    }
+}
+
+.disabedButton {
+    background-color: $light;
+    color: $gray;
+    &:hover {
+        background-color: $light;
+        cursor: not-allowed;
+    }
+} */
