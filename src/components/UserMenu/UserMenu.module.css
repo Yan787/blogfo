@@ -1,0 +1,44 @@
+.background {
+    background-color: #2231AA; 
+    width: 189px;
+    height: 84px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+
+}
+
+.initials {
+    width: 48px;
+    height: 48px;
+    background: #5360CD;
+    color: #FFFFFF;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 2px;
+    line-height: 48px;
+    
+}
+
+.nameUser {
+    width: 104px;
+    height: 34px;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 34px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #FFFFFF;
+    position: relative;
+    margin-left: 16px;
+}
+
