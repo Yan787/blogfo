@@ -1,5 +1,5 @@
 import React from 'react';
-import './App.css';
+import './App.scss';
 
 import Title from './components/Title';
 import UserMenu from "./components/UserMenu";
