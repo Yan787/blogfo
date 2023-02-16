@@ -1,7 +1,7 @@
 import React, {FC, ReactNode} from "react";
 import classNames from "classnames";
 
-import styles from "./Button.module.css"
+import styles from "./Button.module.scss"
 
 
 
@@ -31,7 +31,7 @@ const ButtonClassName = BtnStyles[type]
 
     return (
         <div onClick={disabled ? undefined : onClick} className={classNames(ButtonClassName ,  className, {
-            [styles.disabledButton]:disabled
+            [styles.disabledButton]:disabled 
         })}>{title}</div>
     )
 }
