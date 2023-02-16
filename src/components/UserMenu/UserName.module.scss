@@ -1,5 +1,7 @@
+@import "./src/assers/colors";
+
 .background {
-    background-color: #2231AA; 
+    background-color: $Primary;
     width: 189px;
     height: 84px;
     display: flex;
@@ -12,23 +14,21 @@
     align-items: center;
     justify-content: center;
     position: absolute;
-
 }
 
 .initials {
     width: 48px;
     height: 48px;
-    background: #5360CD;
-    color: #FFFFFF;
+    background: $Primary-secondary;
+    color: $White;
     display: flex;
     align-items: center;
     justify-content: center;
     border-radius: 2px;
     line-height: 48px;
-    
 }
 
-.nameUser {
+.UserName {
     width: 104px;
     height: 34px;
     font-weight: 600;
@@ -37,7 +37,7 @@
     display: flex;
     align-items: center;
     text-align: center;
-    color: #FFFFFF;
+    color: $White;
     position: relative;
     margin-left: 16px;
 }
