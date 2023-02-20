@@ -1,10 +1,10 @@
 import React from 'react';
-import './App.css';
 
 import Title from './components/Title';
-import UserName from "./components/UserMenu";
+import UserName from "./components/UserName";
 import Button from "./components/Buttom"
 import { ButtonType } from "./components/Buttom/Button";
+import BurgerMenu from "./components/BurgerMenu";
 
 const App = () => {
   return (
@@ -16,6 +16,7 @@ const App = () => {
 
           <UserName UserName={`Bob Lapuch`}/>
           <Title title={`Blog`} />
+          <BurgerMenu />
 
         </div>
   );

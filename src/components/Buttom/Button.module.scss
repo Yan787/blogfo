@@ -1,51 +1,5 @@
-// .PrimaryButton {
-//     display: flex;
-//     padding: 16px 32px;
-//     background: #2231AA;
-//     border-radius: 2px;
-//     color: #ffffff;
-// }
-// .PrimaryButton:hover {
-//     background-color: #5360CD;
-
-// }
-
-// .SecondaryButton {
-//     display: flex;
-//     display: flex;
-//     padding: 16px 32px;
-//     background: #E8E8E8;
-//     border-radius: 2px;
-//     color: #313037;
-// }
-// .SecondaryButton:hover {
-//     background-color: #DADADA;
-// }
-
-// .ErrerButton{ 
-//     color: #FD3419;
-//     padding: 16px 32px;
-//     border-radius: 2px;
-// }
-// .ErrerButton:hover {
-//     outline: 1px solid #DADADA;
-// }
-
-// .disabledButton {
-//     background: #E8E8E8;
-//     color: #8D8E97;
-// }
-// .className {
-//     background-color: #FD3419;
-// }
-
-
-
-
-
-@import "src/assers/mixins";
-@import "src/assers/colors";
-
+@import "src/assets/mixins";
+@import "src/assets/colors";
 
 .PrimaryButton {
     @include button;
@@ -81,6 +35,3 @@
         cursor: not-allowed;
     }
 }
-
-
-
