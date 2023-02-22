@@ -1,0 +1,14 @@
+@import "./src/assets/colors";
+
+.btn {
+  border-radius: 0;
+  padding: 0;
+  width: 84px;
+  height: 84px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  &:hover {
+    background-color: $Primary;
+  }
+}

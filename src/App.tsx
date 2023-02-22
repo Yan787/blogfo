@@ -1,11 +1,11 @@
 import React from 'react';
-import './App.css';
 
 import Title from './components/Title';
-import UserName from "./components/UserMenu";
+import UserName from "./components/UserName";
 import Button from "./components/Buttom"
 import { ButtonType } from "./components/Buttom/Button";
-
+import BurgerMenu from "./components/BurgerMenu";
+import Tabs from './components/Tabs';
 const App = () => {
   return (
         <div>
@@ -16,6 +16,8 @@ const App = () => {
 
           <UserName UserName={`Bob Lapuch`}/>
           <Title title={`Blog`} />
+          <Tabs />
+          <BurgerMenu />
 
         </div>
   );
