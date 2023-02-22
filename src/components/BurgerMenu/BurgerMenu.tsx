@@ -4,23 +4,19 @@ import { ButtonType } from "../Buttom/Button";
 import Button from "../Buttom/Button";
 import { CloseIcon, OpenedMenu } from "../../assets/icons";
 
-enum ButgerState {
-  Opened,
-  Closed,
-}
 
 const BurgerMenu = () => {
-  const [activeMenu, setActiveMenu] = useState(ButgerState.Opened)
+  const [isOpened, setOpend] = useState(false)
+
   const onBurgerClick = () => {
-    ButgerState.Opened === activeMenu 
-    ? setActiveMenu(ButgerState.Closed)
-    : setActiveMenu(ButgerState.Opened)
+    return setOpend(!isOpened)
   }
+  
   return (
     <Button 
       className={styles.btn}
       type={ButtonType.Primary}
-      title={activeMenu === ButgerState.Opened ? <CloseIcon /> : <OpenedMenu />}
+      title={isOpened ? <CloseIcon /> : <OpenedMenu />}
       onClick={onBurgerClick}
       
       />
