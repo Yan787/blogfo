@@ -17,17 +17,14 @@
     font-weight: 400;
     font-size: 16px;
     line-height: 20px;
-    &:hover {
+     &:focus {
         outline: 2px solid $Medium;
-    }
+   }
 }
 
 .disabled {
     background-color: $Light;
     color: $Gray;
-    &:hover {
-        outline: 0;
-    }
 }
 
 .errorText {
@@ -43,5 +40,8 @@
     font-size: 16px;
     line-height: 20px;
     color: $Error;
+       &:focus {
+        outline: 0;
+   }
 
 }
