@@ -1,38 +1,19 @@
-import React, { useState } from "react";
+import React, {FC} from "react";
 import classNames from "classnames";
 
+import { TabsNames, TabsType } from "./types";
 import styles from "./Tabs.module.scss";
 
-enum TabsNames {
-    All,
-    Favorites,
-    Popular
+type TabsProps = {
+    tabsList: TabsType[];
+    onTabClick: (key: TabsNames) => ()=> void;
+    activeTab: number;
 }
 
-const TABS_LIST = [
-    {
-        title: `All`,
-        disabled: false,
-        key: TabsNames.All,
-    },
-    {
-        title: `My favorites`,
-        disabled: false,
-        key: TabsNames.Favorites,
-    },
-    {
-        title: `Popular`,
-        disabled: true,
-        key: TabsNames.Popular,
-    },
-]
-
-const Tabs = () => {
-const [activeTab, setActivTab] = useState(TabsNames.All)
-const onTabClick = (key: TabsNames) => ()=> setActivTab(key)
+const Tabs:FC<TabsProps> = ({tabsList, activeTab, onTabClick}) => {
 
     return (
-        <div className={styles.continer}>{TABS_LIST.map(tab=> {
+        <div className={styles.continer}>{tabsList.map(tab=> {
             return <div key={tab.key} className={classNames(styles.tab, {
                 [styles.activeTab]: activeTab === tab.key,
                 [styles.disabled]: tab.disabled

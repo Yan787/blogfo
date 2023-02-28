@@ -25,6 +25,9 @@
 .disabled {
     background-color: $Light;
     color: $Gray;
+    &:hover {
+        cursor: not-allowed;
+    }
 }
 
 .errorText {
