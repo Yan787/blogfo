@@ -2,9 +2,6 @@
 
 .container {
     max-width: 1120px;
-                            margin: 100px auto;/// временный стиль
-                            border-left: 0.1px solid rgba(255, 0, 0, 0.421);/// временный стиль
-                            border-right: 0.1px solid rgba(255, 0, 0, 0.507); /// временный стиль
 }
 
 .navigation {
@@ -80,4 +77,24 @@
     margin-top: 72px;
     border-bottom: 1px solid $Medium;
     max-width: 1120px;
+}
+
+.darkContainer {
+    background-color: $Secondary;
+}
+
+.darkText {
+    color: $White;
+}
+
+.darkNav:first-child  {
+    color: $White;
+  }
+
+.darkNav:last-child  {
+    color: $Gray;
+}
+
+.darkBorder {
+    border-bottom: 1px solid $Gray;
 }

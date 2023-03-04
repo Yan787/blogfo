@@ -1,0 +1,23 @@
+@import "./src/assets/colors";
+
+.wrapper {
+    display: flex;
+    width: 100%;
+    justify-content: center;
+}
+
+.frame {
+    border: 1px solid $Medium;
+    padding: 40px;
+    max-width: 624px;
+    box-sizing: border-box;
+    background-color: $Extra-light;
+    display: flex;
+    flex-direction: column;
+    gap: 48px;
+}
+
+.darkFrame {
+    background-color: $Secondary;
+    border: 1px solid $Gray;
+}

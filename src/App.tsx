@@ -4,6 +4,8 @@ import Post from "./pages/Post";
 import ThemeProvider from "./context/Theme/Provider";
 import { Theme } from "./context/Theme/Context";
 import ThemeSwitcher from "./components/ThemeSwitcher";
+import SingIn from "./pages/SingIn";
+import Success from "./pages/Success";
 
 const App = () => {
   const [theme, setTheme] = useState(Theme.Light);
@@ -12,11 +14,13 @@ const App = () => {
   };
   return (
     <ThemeProvider theme={theme} onChengeTheme={onChengeTheme}>
-      <div>
-        <Post />
-        <ThemeSwitcher />
-        <Home />
-      </div>
+      <Success />
+      <ThemeSwitcher />
+      <SingIn />
+      <ThemeSwitcher />
+      <Post />
+      <ThemeSwitcher />
+      <Home />
     </ThemeProvider>
   );
 };

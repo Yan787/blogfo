@@ -1,15 +1,38 @@
 import React from "react";
+import classNames from "classnames";
+
 import styles from "./Post.module.scss";
 import Title from "../../components/Title";
 import { LikeIcon, DislikeIcon, BookmarkIcon } from "../../assets/icons";
 import Buttom from "../../components/Buttom";
 import { ButtonType } from "../../components/Buttom/Button";
+import { Theme, useThemeContext } from "../../context/Theme/Context";
 const Post = () => {
+  const { theme } = useThemeContext();
+
+  const isDark = theme === Theme.Dark;
+
   return (
-    <div className={styles.container}>
+    <div
+      className={classNames(styles.container, {
+        [styles.darkContainer]: isDark,
+      })}
+    >
       <div className={styles.navigation}>
-        <div className={styles.nav}>Home</div>
-        <div className={styles.nav}>Post 14278</div>
+        <div
+          className={classNames(styles.nav, {
+            [styles.darkNav]: isDark,
+          })}
+        >
+          Home
+        </div>
+        <div
+          className={classNames(styles.nav, {
+            [styles.darkNav]: isDark,
+          })}
+        >
+          Post 14278
+        </div>
       </div>
       <Title
         title={
@@ -24,7 +47,11 @@ const Post = () => {
         />
       </div>
       <div className={styles.wrapperText}>
-        <p className={styles.text}>
+        <p
+          className={classNames(styles.text, {
+            [styles.darkText]: isDark,
+          })}
+        >
           Astronauts Kayla Barron and Raja Chari floated out of the
           International Space Station airlock for a spacewalk Tuesday,
           installing brackets and struts to support new solar arrays to upgrade
@@ -93,7 +120,11 @@ const Post = () => {
           />
         </div>
       </div>
-      <div className={styles.border}></div>
+      <div
+        className={classNames(styles.border, {
+          [styles.darkBorder]: isDark,
+        })}
+      ></div>
     </div>
   );
 };
