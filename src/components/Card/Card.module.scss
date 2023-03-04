@@ -104,3 +104,18 @@
     max-height: 96px;
     object-fit: cover;
 }
+
+.darkTitle {
+    color: $White;
+}
+
+.darkIconContainer {
+    div > svg > path {
+        fill: $White;
+    }
+}
+
+.darkContainer {
+    border-bottom: 1px solid $Gray;
+
+}
