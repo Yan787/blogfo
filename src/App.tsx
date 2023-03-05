@@ -1,26 +1,27 @@
-import React from 'react';
+import React, { useState } from "react";
+import Home from "./pages/Home";
+import Post from "./pages/Post";
+import ThemeProvider from "./context/Theme/Provider";
+import { Theme } from "./context/Theme/Context";
+import ThemeSwitcher from "./components/ThemeSwitcher";
+import SignIn from "./pages/SignIn";
+import Success from "./pages/Success";
 
-import Title from './components/Title';
-import UserName from "./components/UserName";
-import Button from "./components/Buttom"
-import { ButtonType } from "./components/Buttom/Button";
-import BurgerMenu from "./components/BurgerMenu";
-import Tabs from './components/Tabs';
 const App = () => {
+  const [theme, setTheme] = useState(Theme.Light);
+  const onChengeTheme = (value: Theme) => {
+    setTheme(value);
+  };
   return (
-        <div>
-
-          <Button type={ButtonType.Primary} title={`Primary`} onClick={()=> {}}/>
-          <Button type={ButtonType.Secondary} title={`Secondary`} onClick={()=> {}}/>
-          <Button type={ButtonType.Errer} title={`Errer`} onClick={()=> {}}/>
-
-          <UserName UserName={`Bob Lapuch`}/>
-          <Title title={`Blog`} />
-          <Tabs />
-          <BurgerMenu />
-
-        </div>
+    <ThemeProvider theme={theme} onChengeTheme={onChengeTheme}>
+      <Success />
+      <ThemeSwitcher />
+      <SignIn />
+      <ThemeSwitcher />
+      <Post />
+      <ThemeSwitcher />
+      <Home />
+    </ThemeProvider>
   );
-}
-
+};
 export default App;

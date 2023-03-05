@@ -29,3 +29,16 @@
         color: $Gray;
     }
 }
+
+.darkContiner { 
+    .tab {
+        color: $White;
+        &:hover {
+            color: $Primary-secondary;
+        }
+    }
+    .activeTab {
+        border-bottom: 3px solid $White;
+    }
+    
+}

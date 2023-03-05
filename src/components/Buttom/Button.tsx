@@ -20,7 +20,7 @@ type ButtonProps = {
     className?: string,
 }
 
-const BtnStyles = {
+export const BtnStyles = {
     [ButtonType.Primary]:styles.PrimaryButton,
     [ButtonType.Secondary]:styles.SecondaryButton,
     [ButtonType.Errer]:styles.ErrerButton,
