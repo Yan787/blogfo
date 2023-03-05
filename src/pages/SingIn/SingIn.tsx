@@ -47,7 +47,7 @@ const SingIn = () => {
               })}
               href="#"
             >
-              Sign Up
+              &nbsp;Sign Up
             </a>
           </div>
         </div>
