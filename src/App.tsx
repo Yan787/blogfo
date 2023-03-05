@@ -4,7 +4,7 @@ import Post from "./pages/Post";
 import ThemeProvider from "./context/Theme/Provider";
 import { Theme } from "./context/Theme/Context";
 import ThemeSwitcher from "./components/ThemeSwitcher";
-import SingIn from "./pages/SingIn";
+import SignIn from "./pages/SignIn";
 import Success from "./pages/Success";
 
 const App = () => {
@@ -16,7 +16,7 @@ const App = () => {
     <ThemeProvider theme={theme} onChengeTheme={onChengeTheme}>
       <Success />
       <ThemeSwitcher />
-      <SingIn />
+      <SignIn />
       <ThemeSwitcher />
       <Post />
       <ThemeSwitcher />

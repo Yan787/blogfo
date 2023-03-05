@@ -1,6 +1,7 @@
 import React from "react";
 import classNames from "classnames";
-import styles from "./SingIn.module.scss";
+
+import styles from "./SignIn.module.scss";
 import Imput from "../../components/Input/Input";
 import Buttom from "../../components/Buttom";
 import { ButtonType } from "../../components/Buttom/Button";
