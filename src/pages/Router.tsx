@@ -5,7 +5,7 @@ import Home from "./Home";
 import PagesContainer from "./PagesContainer";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
-import RegConfirmation from "./RegConfirmation";
+import RegConfirmation from "./RegConfirmation/RegConfirmation";
 
 export enum RoutesList {
   Home = "/",
