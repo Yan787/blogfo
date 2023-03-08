@@ -32,6 +32,14 @@ const Heder = () => {
         title: "Add post",
         key: RoutesList.AddPost,
       },
+      {
+        title: "Sign Up",
+        key: RoutesList.SignUp,
+      },
+      {
+        title: "Confirmation",
+        key: RoutesList.RegConfirmation,
+      },
     ],
     []
   );

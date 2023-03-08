@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Home from "./Home";
 import PagesContainer from "./PagesContainer";
 import SignIn from "./SignIn";
+import SignUp from "./SignUp";
+import RegConfirmation from "./RegConfirmation";
 
 export enum RoutesList {
   Home = "/",
@@ -14,6 +16,7 @@ export enum RoutesList {
   SignUp = "/sign",
   Confirm = "/sign-up/confirm",
   Success = "sign-up/success",
+  RegConfirmation = "/regonfirmation",
 }
 
 const Router = () => {
@@ -23,6 +26,11 @@ const Router = () => {
         <Route path={RoutesList.Home} element={<PagesContainer />}>
           <Route path={RoutesList.Home} element={<Home />}></Route>
           <Route path={RoutesList.SignIn} element={<SignIn />}></Route>
+          <Route path={RoutesList.SignUp} element={<SignUp />}></Route>
+          <Route
+            path={RoutesList.RegConfirmation}
+            element={<RegConfirmation />}
+          ></Route>
         </Route>
       </Routes>
     </BrowserRouter>
