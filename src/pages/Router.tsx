@@ -16,7 +16,7 @@ export enum RoutesList {
   SignUp = "/sign",
   Confirm = "/sign-up/confirm",
   Success = "sign-up/success",
-  RegConfirmation = "/regonfirmation",
+  RegConfirmation = "/regonfirmation-confirmation",
 }
 
 const Router = () => {
