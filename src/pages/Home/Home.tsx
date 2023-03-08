@@ -1,12 +1,9 @@
 import React, { useState } from "react";
-import classNames from "classnames";
 
 import Title from "../../components/Title";
 import Tabs from "../../components/Tabs";
 import CardsList from "../../components/CardsList";
 import { TabsNames } from "../../components/Tabs/types";
-import { Theme, useThemeContext } from "../../context/Theme/Context";
-import styles from "./Home.module.scss";
 
 const MOCK_CARD = [
   {
@@ -162,15 +159,11 @@ const TABS_LIST = [
 ];
 
 const Home = () => {
-  const { theme } = useThemeContext();
-
   const [activeTab, setActivTab] = useState(TabsNames.All);
   const onTabClick = (key: TabsNames) => () => setActivTab(key);
 
   return (
-    <div
-      className={classNames({ [styles.darkContainer]: theme === Theme.Dark })}
-    >
+    <div>
       <Title title={"Blog"} />
       <Tabs
         tabsList={TABS_LIST}
