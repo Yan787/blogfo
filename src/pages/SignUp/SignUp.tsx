@@ -5,6 +5,8 @@ import Imput from "../../components/Input/Input";
 import Button from "../../components/Buttom/Button";
 import { ButtonType } from "../../components/Buttom/Button";
 import styles from "./SignUp.module.scss";
+import { NavLink } from "react-router-dom";
+import { RoutesList } from "../Router";
 const SignUp = () => {
   return (
     <>
@@ -28,7 +30,10 @@ const SignUp = () => {
           />
         </div>
         <div className={styles.signUp}>
-          Already have an account? <a className={styles.link}>&nbsp;Sign In</a>
+          Already have an account?
+          <NavLink to={RoutesList.SignIn} className={styles.link}>
+            &nbsp;Sign In
+          </NavLink>
         </div>
       </Frame>
     </>

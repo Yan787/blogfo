@@ -70,7 +70,7 @@ const Heder = () => {
           <div>
             <ThemeSwitcher />
             <Button
-              title={"Log Out"}
+              title={"Sign In"}
               type={ButtonType.Secondary}
               onClick={onAuthButtonClic}
               className={styles.authButton}

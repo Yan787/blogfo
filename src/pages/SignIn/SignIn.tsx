@@ -8,7 +8,8 @@ import { ButtonType } from "../../components/Buttom/Button";
 import FormPage from "../FormPage/FormProps";
 import Frame from "../../components/Frame";
 import { Theme, useThemeContext } from "../../context/Theme/Context";
-
+import { NavLink } from "react-router-dom";
+import { RoutesList } from "../Router";
 const SingIn = () => {
   const { theme } = useThemeContext();
 
@@ -42,14 +43,14 @@ const SingIn = () => {
             })}
           >
             Don’t have an account?{" "}
-            <a
+            <NavLink
+              to={RoutesList.SignUp}
               className={classNames(styles.link, {
                 [styles.darkLink]: theme === Theme.Dark,
               })}
-              href="#"
             >
               &nbsp;Sign Up
-            </a>
+            </NavLink>
           </div>
         </div>
       </Frame>

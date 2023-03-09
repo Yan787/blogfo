@@ -12,7 +12,7 @@ export enum RoutesList {
   SinglePost = "/blog/:id",
   AddPost = "/blog/add",
   Search = "/blog/search",
-  SignIn = "sign-In",
+  SignIn = "/sign-In",
   SignUp = "/sign",
   Confirm = "/sign-up/confirm",
   Success = "sign-up/success",
