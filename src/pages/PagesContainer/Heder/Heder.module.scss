@@ -55,5 +55,12 @@
 
 .activeNavButton {
     color: $Primary;
+}
 
+.userName {
+    border-left: 1px solid $Primary-secondary;
+}
+
+.menuUser {
+    border-top: 1px solid $Primary-secondary;
 }

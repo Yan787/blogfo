@@ -1,8 +1,10 @@
 import React, { FC, useState } from "react";
 import styles from "./BurgerMenu.module.scss";
-import { ButtonType } from "../Buttom/Button";
-import Button from "../Buttom/Button";
+import { ButtonType } from "../Button/Button";
+import Button from "../Button/Button";
 import { CloseIcon, OpenedMenu } from "../../assets/icons";
+import classNames from "classnames";
+
 type BurgerMenuProps = {
   changeState: () => void;
   isOpened: boolean;
@@ -10,7 +12,9 @@ type BurgerMenuProps = {
 const BurgerMenu: FC<BurgerMenuProps> = ({ isOpened, changeState }) => {
   return (
     <Button
-      className={styles.btn}
+      className={classNames(styles.btn, {
+        [styles.menuBtn]: !isOpened === true,
+      })}
       type={ButtonType.Primary}
       title={isOpened ? <CloseIcon /> : <OpenedMenu />}
       onClick={changeState}

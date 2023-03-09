@@ -4,8 +4,8 @@ import classNames from "classnames";
 import styles from "./Post.module.scss";
 import Title from "../../components/Title";
 import { LikeIcon, DislikeIcon, BookmarkIcon } from "../../assets/icons";
-import Buttom from "../../components/Buttom";
-import { ButtonType } from "../../components/Buttom/Button";
+import Buttom from "../../components/Button";
+import { ButtonType } from "../../components/Button/Button";
 import { Theme, useThemeContext } from "../../context/Theme/Context";
 const Post = () => {
   const { theme } = useThemeContext();

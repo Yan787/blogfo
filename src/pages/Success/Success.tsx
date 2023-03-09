@@ -4,8 +4,8 @@ import classNames from "classnames";
 import styles from "./Success.module.scss";
 import Frame from "../../components/Frame";
 import FormPage from "../FormPage/FormProps";
-import Buttom from "../../components/Buttom";
-import { ButtonType } from "../../components/Buttom/Button";
+import Buttom from "../../components/Button";
+import { ButtonType } from "../../components/Button/Button";
 import { Theme, useThemeContext } from "../../context/Theme/Context";
 
 const Success = () => {

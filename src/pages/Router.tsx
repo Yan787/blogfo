@@ -6,6 +6,7 @@ import PagesContainer from "./PagesContainer";
 import SignIn from "./SignIn";
 import SignUp from "./SignUp";
 import RegConfirmation from "./RegConfirmation/RegConfirmation";
+import FormPage from "./FormPage/FormProps";
 
 export enum RoutesList {
   Home = "/",
@@ -17,6 +18,7 @@ export enum RoutesList {
   Confirm = "/sign-up/confirm",
   Success = "sign-up/success",
   RegConfirmation = "/regonfirmation-confirmation",
+  Default = "*",
 }
 
 const Router = () => {
@@ -27,6 +29,10 @@ const Router = () => {
           <Route path={RoutesList.Home} element={<Home />}></Route>
           <Route path={RoutesList.SignIn} element={<SignIn />}></Route>
           <Route path={RoutesList.SignUp} element={<SignUp />}></Route>
+          <Route
+            path={RoutesList.Default}
+            element={<FormPage title={"404 NOT FOUND"} />}
+          ></Route>
           <Route
             path={RoutesList.RegConfirmation}
             element={<RegConfirmation />}

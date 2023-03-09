@@ -3,13 +3,13 @@ import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import classNames from "classnames";
 
 import BurgerMenu from "../../../components/BurgerMenu";
-import Button from "../../../components/Buttom/Button";
-import { ButtonType } from "../../../components/Buttom/Button";
+import Button from "../../../components/Button/Button";
+import { ButtonType } from "../../../components/Button/Button";
 import ThemeSwitcher from "../../../components/ThemeSwitcher";
 import UserName from "../../../components/UserName";
 import styles from "./Heder.module.scss";
 import { RoutesList } from "../../Router";
-
+import { UserIcon } from "../../../assets/icons";
 const Heder = () => {
   const [isOpened, setOpened] = useState(false);
   const changeState = () => {
@@ -22,16 +22,22 @@ const Heder = () => {
     navigate(RoutesList.SignIn);
   };
 
+  const isLoggedIn = true;
+
   const navButtonList = useMemo(
     () => [
       {
         title: "Home",
         key: RoutesList.Home,
       },
-      {
-        title: "Add post",
-        key: RoutesList.AddPost,
-      },
+      ...(!isLoggedIn
+        ? []
+        : [
+            {
+              title: "Add post",
+              key: RoutesList.AddPost,
+            },
+          ]),
       {
         title: "Sign Up",
         key: RoutesList.SignUp,
@@ -41,18 +47,30 @@ const Heder = () => {
         key: RoutesList.RegConfirmation,
       },
     ],
-    []
+    [isLoggedIn]
   );
   const location = useLocation();
   return (
     <>
       <div className={styles.container}>
         <BurgerMenu isOpened={isOpened} changeState={changeState} />
-        <UserName UserName={"Artem Malkin"} />
+        {isLoggedIn ? (
+          <UserName UserName={"Artem Malkin"} className={styles.userName} />
+        ) : (
+          <Button
+            title={<UserIcon />}
+            type={ButtonType.Primary}
+            onClick={onAuthButtonClic}
+          />
+        )}
       </div>
       {isOpened && (
         <div className={styles.mainContainer}>
           <div className={styles.actionsContainer}>
+            {isLoggedIn && (
+              <UserName UserName={"Artem Malkin"} className={styles.menuUser} />
+            )}
+
             {navButtonList.map(({ title, key }) => {
               return (
                 <NavLink
@@ -70,9 +88,9 @@ const Heder = () => {
           <div>
             <ThemeSwitcher />
             <Button
-              title={"Sign In"}
+              title={!isLoggedIn ? "Sign In" : "Log Out"}
               type={ButtonType.Secondary}
-              onClick={onAuthButtonClic}
+              onClick={!isLoggedIn ? onAuthButtonClic : () => {}}
               className={styles.authButton}
             />
           </div>
