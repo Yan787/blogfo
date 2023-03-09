@@ -4,6 +4,7 @@
 .PrimaryButton {
     @include button;
     background-color: $Primary;
+    padding: 30px;
     color: $White;
     &:hover {
         background-color: $Primary-secondary;
