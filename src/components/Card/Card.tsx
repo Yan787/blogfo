@@ -11,6 +11,9 @@ import {
 } from "../../assets/icons";
 import { useThemeContext } from "../../context/Theme/Context";
 import { Theme } from "../../context/Theme/Context";
+import { useDispatch } from "react-redux";
+import { setSelectedPost } from "../../redux/reducers/postSlice";
+import { setPostVisible } from "../../redux/reducers/postSlice";
 
 const Card: FC<CardProps> = ({ Card, Size }) => {
   const { theme } = useThemeContext();
@@ -19,6 +22,13 @@ const Card: FC<CardProps> = ({ Card, Size }) => {
   const isMedium = Size === CardSize.Medium;
   const isSmall = Size === CardSize.Small;
   const isDark = theme === Theme.Dark;
+
+  const dispatch = useDispatch();
+
+  const onClickMore = () => {
+    dispatch(setSelectedPost(Card));
+    dispatch(setPostVisible(true));
+  };
 
   return (
     <div
@@ -77,7 +87,7 @@ const Card: FC<CardProps> = ({ Card, Size }) => {
           <div>
             <BookmarkIcon />
           </div>
-          <div>
+          <div onClick={onClickMore}>
             <MoreIcon />
           </div>
         </div>

@@ -4,6 +4,7 @@ import Title from "../../components/Title";
 import Tabs from "../../components/Tabs";
 import CardsList from "../../components/CardsList";
 import { TabsNames } from "../../components/Tabs/types";
+import SelectedPostModal from "./SelectedPostModal";
 
 const MOCK_CARD = [
   {
@@ -171,6 +172,7 @@ const Home = () => {
         onTabClick={onTabClick}
       />
       <CardsList cardsList={MOCK_CARD} />
+      <SelectedPostModal />
     </div>
   );
 };
