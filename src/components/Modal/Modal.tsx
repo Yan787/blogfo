@@ -10,7 +10,7 @@ type ModalProps = {
 
 const Modal: FC<ModalProps> = ({ isVisible, onClose, children }) => {
   return isVisible ? (
-    <div className={styles.modalComtainer} onClick={onClose}>
+    <div className={styles.modalComtainer}>
       <div className={styles.modalContent}>
         <div className={styles.closeIcon} onClick={onClose}>
           <CloseIconModal />
