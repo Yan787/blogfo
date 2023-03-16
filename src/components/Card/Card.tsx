@@ -11,23 +11,42 @@ import {
 } from "../../assets/icons";
 import { useThemeContext } from "../../context/Theme/Context";
 import { Theme } from "../../context/Theme/Context";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setSelectedPost } from "../../redux/reducers/postSlice";
 import { setPostVisible } from "../../redux/reducers/postSlice";
+import { PostSelectors } from "../../redux/reducers/postSlice";
+import { setStatus, LikeStatus } from "../../redux/reducers/postSlice";
+import { setBookmarkStatus } from "../../redux/reducers/postSlice";
 
-const Card: FC<CardProps> = ({ Card, Size }) => {
+const Card: FC<CardProps> = ({ card, size }) => {
+  const { title, image, date, text } = card;
   const { theme } = useThemeContext();
 
-  const { title, image, date, text } = Card;
-  const isMedium = Size === CardSize.Medium;
-  const isSmall = Size === CardSize.Small;
+  const isMedium = size === CardSize.Medium;
+  const isSmall = size === CardSize.Small;
   const isDark = theme === Theme.Dark;
 
   const dispatch = useDispatch();
+  const selector = useSelector(PostSelectors.getVisibleSelectedModal);
 
   const onClickMore = () => {
-    dispatch(setSelectedPost(Card));
+    dispatch(setSelectedPost(card));
     dispatch(setPostVisible(true));
+  };
+
+  const onStatusClick = (status: LikeStatus) => () => {
+    dispatch(setStatus({ status, card }));
+  };
+
+  const likePost = useSelector(PostSelectors.getLikedPost);
+  const dislikePost = useSelector(PostSelectors.getDislikedPost);
+  const isVisible = useSelector(PostSelectors.getVisibleSelectedModal);
+
+  const likeIndex = likePost.findIndex((post) => post.id === card.id);
+  const dislikeIndex = dislikePost.findIndex((post) => post.id === card.id);
+
+  const onBookmarkClick = () => () => {
+    dispatch(setBookmarkStatus(card));
   };
 
   return (
@@ -50,13 +69,13 @@ const Card: FC<CardProps> = ({ Card, Size }) => {
             <div
               className={classNames(styles.title, {
                 [styles.mediumTitle]: isMedium || isSmall,
-                [styles.darkTitle]: isDark,
+                [styles.darkTitle]: !isVisible && isDark,
               })}
             >
               {title}
             </div>
           </div>
-          {Size === CardSize.Large && <div className={styles.text}>{text}</div>}
+          {size === CardSize.Large && <div className={styles.text}>{text}</div>}
         </div>
         <img
           src={image}
@@ -69,27 +88,31 @@ const Card: FC<CardProps> = ({ Card, Size }) => {
       <div className={styles.footer}>
         <div
           className={classNames(styles.iconContainer, {
-            [styles.darkIconContainer]: isDark,
+            [styles.darkIconContainer]: !isVisible && isDark,
           })}
         >
-          <div>
+          <div onClick={onStatusClick(LikeStatus.Like)}>
             <LikeIcon />
+            {likeIndex > -1 && 1}
           </div>
-          <div>
+          <div onClick={onStatusClick(LikeStatus.DisLike)}>
             <DislikeIcon />
+            {dislikeIndex > -1 && 1}
           </div>
         </div>
         <div
           className={classNames(styles.iconContainer, {
-            [styles.darkIconContainer]: isDark,
+            [styles.darkIconContainer]: !isVisible && isDark,
           })}
         >
-          <div>
+          <div onClick={onBookmarkClick}>
             <BookmarkIcon />
           </div>
-          <div onClick={onClickMore}>
-            <MoreIcon />
-          </div>
+          {!selector && (
+            <div onClick={onClickMore}>
+              <MoreIcon />
+            </div>
+          )}
         </div>
       </div>
     </div>

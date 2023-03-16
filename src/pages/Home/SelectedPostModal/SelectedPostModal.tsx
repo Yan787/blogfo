@@ -23,7 +23,7 @@ const SelectedPostModal = () => {
 
   return (
     <Modal isVisible={isVisible} onClose={onClose}>
-      {selectedPost ? <Card Card={selectedPost} Size={CardSize.Large} /> : null}
+      {selectedPost ? <Card card={selectedPost} size={CardSize.Large} /> : null}
     </Modal>
   );
 };

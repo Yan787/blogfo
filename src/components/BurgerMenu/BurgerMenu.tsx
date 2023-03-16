@@ -12,9 +12,7 @@ type BurgerMenuProps = {
 const BurgerMenu: FC<BurgerMenuProps> = ({ isOpened, changeState }) => {
   return (
     <Button
-      className={classNames(styles.btn, {
-        [styles.menuBtn]: !isOpened === true,
-      })}
+      className={styles.btn}
       type={ButtonType.Primary}
       title={isOpened ? <CloseIcon /> : <OpenedMenu />}
       onClick={changeState}
