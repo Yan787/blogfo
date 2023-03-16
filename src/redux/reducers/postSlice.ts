@@ -55,11 +55,12 @@ const postSlice = createSlice({
 				state[secondaryKey].splice(secondaryIndex ,1)
 			 }
 			},
-			setBookmarkStatus: (state, action: PayloadAction<CardType>)=> {
-				const savedPostsIndex = state.savedPosts.findIndex((post)=> post.id === action.payload.id)
+			setBookmarkStatus: (state, action: PayloadAction<{card: CardType}>)=> {
+				const {card} = action.payload
+				const savedPostsIndex = state.savedPosts.findIndex((post)=> post.id === card.id)
 
 				if(savedPostsIndex === -1) {
-					state.savedPosts.push(action.payload)
+					state.savedPosts.push(card)
 				} else {
 					state.savedPosts.splice(savedPostsIndex, 1)
 				}

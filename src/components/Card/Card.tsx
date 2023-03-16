@@ -17,6 +17,7 @@ import { setPostVisible } from "../../redux/reducers/postSlice";
 import { PostSelectors } from "../../redux/reducers/postSlice";
 import { setStatus, LikeStatus } from "../../redux/reducers/postSlice";
 import { setBookmarkStatus } from "../../redux/reducers/postSlice";
+import { FilledBookmarkicon } from "../../assets/icons";
 
 const Card: FC<CardProps> = ({ card, size }) => {
   const { title, image, date, text } = card;
@@ -41,12 +42,14 @@ const Card: FC<CardProps> = ({ card, size }) => {
   const likePost = useSelector(PostSelectors.getLikedPost);
   const dislikePost = useSelector(PostSelectors.getDislikedPost);
   const isVisible = useSelector(PostSelectors.getVisibleSelectedModal);
+  const savedPosts = useSelector(PostSelectors.getBookmarkStatus);
 
   const likeIndex = likePost.findIndex((post) => post.id === card.id);
   const dislikeIndex = dislikePost.findIndex((post) => post.id === card.id);
+  const bookmarkIndex = savedPosts.findIndex((post) => post.id === card.id);
 
-  const onBookmarkClick = () => () => {
-    dispatch(setBookmarkStatus(card));
+  const onBookmarkClick = () => {
+    dispatch(setBookmarkStatus({ card }));
   };
 
   return (
@@ -106,7 +109,7 @@ const Card: FC<CardProps> = ({ card, size }) => {
           })}
         >
           <div onClick={onBookmarkClick}>
-            <BookmarkIcon />
+            {bookmarkIndex === -1 ? <BookmarkIcon /> : <FilledBookmarkicon />}
           </div>
           {!selector && (
             <div onClick={onClickMore}>
