@@ -52,6 +52,10 @@
     font-size: 32px;
     line-height: 44px;
     color: $Secondary;
+    &:hover {
+        color:$Primary-secondary !important;
+        cursor: pointer;
+    }
 }
 
 .text {

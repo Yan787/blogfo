@@ -1,10 +1,12 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import Title from "../../components/Title";
 import Tabs from "../../components/Tabs";
 import CardsList from "../../components/CardsList";
 import { TabsNames } from "../../components/Tabs/types";
 import SelectedPostModal from "./SelectedPostModal";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPosts, PostSelectors } from "../../redux/reducers/postSlice";
 
 const MOCK_CARD = [
   {
@@ -160,9 +162,16 @@ const TABS_LIST = [
 ];
 
 const Home = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllPosts());
+  }, []);
+
+  const postsList = useSelector(PostSelectors.getAllPosts);
+
   const [activeTab, setActivTab] = useState(TabsNames.All);
   const onTabClick = (key: TabsNames) => () => setActivTab(key);
-
   return (
     <div>
       <Title title={"Blog"} />
@@ -171,7 +180,7 @@ const Home = () => {
         activeTab={activeTab}
         onTabClick={onTabClick}
       />
-      <CardsList cardsList={MOCK_CARD} />
+      <CardsList cardsList={postsList} />
       <SelectedPostModal />
     </div>
   );

@@ -4,7 +4,7 @@ import classNames from "classnames";
 import styles from "./SignIn.module.scss";
 import Imput from "../../components/Input/Input";
 import Buttom from "../../components/Button";
-import { ButtonType } from "../../components/Button/Button";
+import { ButtonType } from "../../utils/@globalTypes";
 import FormPage from "../FormPage/FormProps";
 import Frame from "../../components/Frame";
 import { Theme, useThemeContext } from "../../context/Theme/Context";

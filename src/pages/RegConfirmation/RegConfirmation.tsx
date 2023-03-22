@@ -2,7 +2,7 @@ import React from "react";
 import Button from "../../components/Button/Button";
 import Frame from "../../components/Frame";
 import FormPage from "../FormPage/FormProps";
-import { ButtonType } from "../../components/Button/Button";
+import { ButtonType } from "../../utils/@globalTypes";
 import styles from "./RegConfirmation.module.scss";
 import classNames from "classnames";
 import { Theme, useThemeContext } from "../../context/Theme/Context";

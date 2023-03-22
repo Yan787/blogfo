@@ -1,14 +1,14 @@
 import React, { FC } from "react";
-import { CardSize, CardType } from "../Card/types";
+import { CardListType, CardSize } from "../../utils/@globalTypes";
 import Card from "../Card";
 import styles from "./CardsList.module.scss";
 
 type CardsListProps = {
-  cardsList: CardType[];
+  cardsList: CardListType;
 };
 
 const CardsList: FC<CardsListProps> = ({ cardsList }) => {
-  return (
+  return cardsList.length > 0 ? (
     <div className={styles.container}>
       <div>
         <Card card={cardsList[0]} size={CardSize.Large} />
@@ -28,6 +28,6 @@ const CardsList: FC<CardsListProps> = ({ cardsList }) => {
         })}
       </div>
     </div>
-  );
+  ) : null;
 };
 export default CardsList;

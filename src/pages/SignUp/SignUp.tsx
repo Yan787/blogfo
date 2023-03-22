@@ -3,7 +3,7 @@ import Frame from "../../components/Frame";
 import FormPage from "../FormPage/FormProps";
 import Imput from "../../components/Input/Input";
 import Button from "../../components/Button/Button";
-import { ButtonType } from "../../components/Button/Button";
+import { ButtonType } from "../../utils/@globalTypes";
 import styles from "./SignUp.module.scss";
 import { NavLink } from "react-router-dom";
 import { RoutesList } from "../Router";

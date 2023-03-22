@@ -8,7 +8,7 @@ import {
   setPostVisible,
 } from "../../../redux/reducers/postSlice";
 import Card from "../../../components/Card";
-import { CardSize } from "../../../components/Card/types";
+import { CardSize } from "../../../utils/@globalTypes";
 const SelectedPostModal = () => {
   const isVisible = useSelector(PostSelectors.getVisibleSelectedModal);
 

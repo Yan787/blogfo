@@ -4,7 +4,7 @@ import classNames from "classnames";
 
 import BurgerMenu from "../../../components/BurgerMenu";
 import Button from "../../../components/Button/Button";
-import { ButtonType } from "../../../components/Button/Button";
+import { ButtonType } from "../../../utils/@globalTypes";
 import ThemeSwitcher from "../../../components/ThemeSwitcher";
 import UserName from "../../../components/UserName";
 import styles from "./Heder.module.scss";

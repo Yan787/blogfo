@@ -2,7 +2,8 @@ import React, { FC } from "react";
 import classNames from "classnames";
 
 import styles from "./Card.module.scss";
-import { CardProps, CardSize } from "./types";
+import { CardProps } from "./types";
+
 import {
   LikeIcon,
   DislikeIcon,
@@ -18,15 +19,19 @@ import { PostSelectors } from "../../redux/reducers/postSlice";
 import { setStatus, LikeStatus } from "../../redux/reducers/postSlice";
 import { setBookmarkStatus } from "../../redux/reducers/postSlice";
 import { FilledBookmarkicon } from "../../assets/icons";
+import { CardSize } from "../../utils/@globalTypes";
+import { useNavigate } from "react-router-dom";
 
 const Card: FC<CardProps> = ({ card, size }) => {
-  const { title, image, date, text } = card;
+  const { title, image, date, text, id } = card;
+
   const { theme } = useThemeContext();
 
   const isMedium = size === CardSize.Medium;
   const isSmall = size === CardSize.Small;
   const isDark = theme === Theme.Dark;
 
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const selector = useSelector(PostSelectors.getVisibleSelectedModal);
 
@@ -51,6 +56,9 @@ const Card: FC<CardProps> = ({ card, size }) => {
   const onBookmarkClick = () => {
     dispatch(setBookmarkStatus({ card }));
   };
+  const onTitleClick = () => {
+    navigate(`/blog/${id}`);
+  };
 
   return (
     <div
@@ -74,6 +82,7 @@ const Card: FC<CardProps> = ({ card, size }) => {
                 [styles.mediumTitle]: isMedium || isSmall,
                 [styles.darkTitle]: !isVisible && isDark,
               })}
+              onClick={onTitleClick}
             >
               {title}
             </div>

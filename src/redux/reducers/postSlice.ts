@@ -1,5 +1,6 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Card, { CardType } from "../../components/Card";
+import { CardListType } from "../../utils/@globalTypes";
 import { RootState } from "../store";
 
 export enum LikeStatus {
@@ -10,9 +11,11 @@ export enum LikeStatus {
 type initialType = {
 	selectedPost: CardType | null,
 	isVisibleSelectedModal:  boolean,
-	likedPost: CardType[],
-	disLikedPost: CardType[],
-	savedPosts: CardType[],
+	likedPost: CardListType,
+	disLikedPost: CardListType,
+	savedPosts: CardListType,
+	postList: CardListType,
+	singlePost: CardType | null,
 }
 const initialState: initialType = {
 	selectedPost: null,
@@ -20,12 +23,22 @@ const initialState: initialType = {
 	likedPost: [],
 	disLikedPost: [],
 	savedPosts: [],
+	postList: [],
+	singlePost: null,
 };
 
 const postSlice = createSlice({
 	name: "posts",
 	initialState,
 	reducers: {
+		getAllPosts: (_,__: PayloadAction<undefined>)=> {},
+		setAllPosts: (state, action: PayloadAction<CardListType>)=> {
+			state.postList = action.payload
+		},
+		getSinglePost: (_,__: PayloadAction<string>)=> {},
+		setSinglePost: (state, action: PayloadAction<CardType | null>)=> {
+			state.singlePost = action.payload
+		},
 		setSelectedPost: (state, action: PayloadAction<CardType | null>)=> {
 			state.selectedPost = action.payload;
 		},
@@ -68,7 +81,7 @@ const postSlice = createSlice({
 	},
 });
 
-export const { setSelectedPost, setPostVisible, setStatus, setBookmarkStatus } = postSlice.actions;
+export const { setSelectedPost, setPostVisible, setStatus, setBookmarkStatus, getAllPosts, setAllPosts, getSinglePost, setSinglePost  } = postSlice.actions;
 
 export default postSlice.reducer;
 
@@ -77,5 +90,7 @@ export const PostSelectors = {
     getVisibleSelectedModal: (state: RootState)=> state.post.isVisibleSelectedModal,
 	getLikedPost: (state: RootState)=> state.post.likedPost,
 	getDislikedPost: (state: RootState)=> state.post.disLikedPost,
-	getBookmarkStatus: (state: RootState)=> state.post.savedPosts
+	getBookmarkStatus: (state: RootState)=> state.post.savedPosts,
+	getAllPosts: (state: RootState) => state.post.postList,
+	getSinglePost: (state: RootState) => state.post.singlePost
 }
