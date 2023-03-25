@@ -47,6 +47,14 @@ const Heder = () => {
         title: "Confirmation",
         key: RoutesList.RegConfirmation,
       },
+      {
+        title: "ResetPassword",
+        key: RoutesList.ResetPassword,
+      },
+      {
+        title: "New password",
+        key: RoutesList.NewPassword,
+      },
     ],
     [isLoggedIn]
   );

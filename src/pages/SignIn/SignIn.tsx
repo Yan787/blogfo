@@ -18,9 +18,13 @@ const SingIn = () => {
       <FormPage title={"Sign In"} />
       <Frame>
         <div className={styles.inputWrapper}>
-          <Imput title={"Email"} placeholder={"Your email"} />
+          <Imput type={"text"} title={"Email"} placeholder={"Your email"} />
           <div>
-            <Imput title={"Password"} placeholder={"Your password"} />
+            <Imput
+              type={"password"}
+              title={"Password"}
+              placeholder={"Your password"}
+            />
             <div
               className={classNames(styles.forgotPass, {
                 [styles.darkforgotPass]: theme === Theme.Dark,

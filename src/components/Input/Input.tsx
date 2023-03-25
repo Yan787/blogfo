@@ -10,6 +10,7 @@ type ImputProps = {
   disabled?: boolean;
   errorText?: boolean;
   className?: boolean;
+  type: string;
 };
 
 const Imput: FC<ImputProps> = ({
@@ -18,6 +19,7 @@ const Imput: FC<ImputProps> = ({
   placeholder,
   errorText,
   className,
+  type,
 }) => {
   const { theme } = useThemeContext();
   return (
@@ -34,7 +36,7 @@ const Imput: FC<ImputProps> = ({
           [styles.disabled]: disabled,
           [styles.errorText]: errorText,
         })}
-        type="text"
+        type={type}
         placeholder={placeholder}
         disabled={disabled}
       />

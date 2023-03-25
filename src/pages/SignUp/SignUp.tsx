@@ -14,10 +14,15 @@ const SignUp = () => {
       <Frame>
         <div className={styles.container}>
           <div className={styles.inputContainer}>
-            <Imput title={"Name"} placeholder={"Your name"} />
-            <Imput title={"Email"} placeholder={"Your email"} />
-            <Imput title={"Password"} placeholder={"Your password"} />
+            <Imput type={"text"} title={"Name"} placeholder={"Your name"} />
+            <Imput type={"text"} title={"Email"} placeholder={"Your email"} />
             <Imput
+              type={"password"}
+              title={"Password"}
+              placeholder={"Your password"}
+            />
+            <Imput
+              type={"password"}
               title={"Confirm password"}
               placeholder={"Confirm password"}
             />

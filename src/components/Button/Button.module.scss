@@ -4,8 +4,10 @@
 .PrimaryButton {
     @include button;
     background-color: $Primary;
-    padding: 30px;
     color: $White;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     &:hover {
         background-color: $Primary-secondary;
     }
