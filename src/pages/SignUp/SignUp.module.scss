@@ -24,7 +24,7 @@
     font-weight: 500;
     font-size: 16px;
     line-height: 20px;
-    color: $Gray;
+    margin-top: 24px;
 }
 
 .link {
@@ -35,3 +35,13 @@
     text-decoration: none;
 }
 
+.navButton {
+    text-decoration: none;
+}
+
+.darktext {
+    color: $White;
+}
+.darkNav {
+    color: $Primary-secondary;
+}

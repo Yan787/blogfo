@@ -2,7 +2,6 @@ import React from "react";
 import classNames from "classnames";
 
 import styles from "./SignIn.module.scss";
-import Imput from "../../components/Input/Input";
 import Buttom from "../../components/Button";
 import { ButtonType } from "../../utils/@globalTypes";
 import FormPage from "../FormPage/FormProps";
@@ -10,6 +9,7 @@ import Frame from "../../components/Frame";
 import { Theme, useThemeContext } from "../../context/Theme/Context";
 import { NavLink } from "react-router-dom";
 import { RoutesList } from "../Router";
+import Input from "../../components/Input/Input";
 const SingIn = () => {
   const { theme } = useThemeContext();
 
@@ -18,13 +18,20 @@ const SingIn = () => {
       <FormPage title={"Sign In"} />
       <Frame>
         <div className={styles.inputWrapper}>
-          <Imput type={"text"} title={"Email"} placeholder={"Your email"} />
+          <Input
+            onChange={() => {}}
+            type={"text"}
+            title={"Email"}
+            placeholder={"Your email"}
+          />
           <div>
-            <Imput
+            <Input
+              onChange={() => {}}
               type={"password"}
               title={"Password"}
               placeholder={"Your password"}
             />
+
             <div
               className={classNames(styles.forgotPass, {
                 [styles.darkforgotPass]: theme === Theme.Dark,

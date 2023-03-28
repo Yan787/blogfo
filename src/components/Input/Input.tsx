@@ -1,47 +1,52 @@
-import React, { FC } from "react";
+import React, { ChangeEvent, FC } from "react";
 import classNames from "classnames";
-
 import styles from "./Input.module.scss";
 import { Theme, useThemeContext } from "../../context/Theme/Context";
 
-type ImputProps = {
+type InputProps = {
+  value?: string;
+  onChange: (value: string) => void;
   title: string;
   placeholder: string;
   disabled?: boolean;
-  errorText?: boolean;
-  className?: boolean;
-  type: string;
+  errorText?: string;
+  type?: string;
 };
-
-const Imput: FC<ImputProps> = ({
+const Input: FC<InputProps> = ({
+  value,
+  onChange,
   title,
-  disabled,
-  placeholder,
-  errorText,
-  className,
   type,
+  placeholder,
+  disabled,
+  errorText,
 }) => {
+  const onChangeText = (e: ChangeEvent<HTMLInputElement>) => {
+    onChange(e.target.value);
+  };
   const { theme } = useThemeContext();
   return (
-    <div className={styles.margin}>
+    <div className={styles.container}>
       <div
         className={classNames(styles.title, {
-          [styles.darkTitle]: theme === Theme.Dark,
+          [styles.darkText]: theme === Theme.Dark,
         })}
       >
         {title}
       </div>
       <input
-        className={classNames(styles.input, className, {
+        value={value}
+        className={classNames(styles.input, {
           [styles.disabled]: disabled,
           [styles.errorText]: errorText,
         })}
-        type={type}
         placeholder={placeholder}
+        onChange={onChangeText}
         disabled={disabled}
+        type={type}
       />
-      {errorText && <div className={styles.err}>Error text</div>}
+      {errorText && <div className={styles.validText}>{errorText}</div>}
     </div>
   );
 };
-export default Imput;
+export default Input;

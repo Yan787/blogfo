@@ -4,11 +4,11 @@ import styles from "./ResetPassword.module.scss";
 import FormPage from "../FormPage/FormProps";
 import Frame from "../../components/Frame";
 import Button from "../../components/Button";
-import Imput from "../../components/Input/Input";
 import { ButtonType } from "../../utils/@globalTypes";
 import classNames from "classnames";
 import { useThemeContext } from "../../context/Theme/Context";
 import { Theme } from "../../context/Theme/Context";
+import Input from "../../components/Input/Input";
 
 const ResetPassword = () => {
   const { theme } = useThemeContext();
@@ -23,7 +23,8 @@ const ResetPassword = () => {
           You will receive an email example@gmail.com with a link to reset your
           password!
         </div>
-        <Imput
+        <Input
+          onChange={() => {}}
           type={"text"}
           title={"Email"}
           placeholder={"example@gmail.com"}

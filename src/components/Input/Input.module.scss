@@ -33,12 +33,14 @@
 
 .errorText {
     border: 2px solid $Error;
+
     &:hover {
         outline: 0;
     }
 }
 
 .err {
+
     margin-top: 16px;
     font-weight: 400;
     font-size: 16px;
@@ -51,5 +53,13 @@
 }
 
 .darkTitle {
+    color: $White;
+}
+
+.validText {
+    color: $Error;
+}
+
+.darkText {
     color: $White;
 }

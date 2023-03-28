@@ -7,9 +7,16 @@ import FormPage from "../FormPage/FormProps";
 import Buttom from "../../components/Button";
 import { ButtonType } from "../../utils/@globalTypes";
 import { Theme, useThemeContext } from "../../context/Theme/Context";
+import { RoutesList } from "../Router";
+import { useNavigate } from "react-router-dom";
 
 const Success = () => {
   const { theme } = useThemeContext();
+  const navigatea = useNavigate();
+
+  const onGoHomeClick = () => {
+    navigatea(RoutesList.Home);
+  };
   return (
     <div className={classNames({ [styles.darkWrapper]: theme === Theme.Dark })}>
       <FormPage title={"Success"} />
@@ -26,7 +33,7 @@ const Success = () => {
           className={styles.btn}
           title={"Go to home"}
           type={ButtonType.Primary}
-          onClick={() => {}}
+          onClick={onGoHomeClick}
         />
       </Frame>
     </div>

@@ -10,16 +10,17 @@ import FormPage from "./FormPage/FormProps";
 import Post from "./Post";
 import ResetPassword from "./ResetPassword";
 import NewPassword from "./NewPassword";
+import Success from "./Success";
 
 export enum RoutesList {
   Home = "/",
   SinglePost = "/blog/:postId",
   AddPost = "/blog/add",
   Search = "/blog/search",
-  SignIn = "/sign-In",
-  SignUp = "/sign",
-  Confirm = "/sign-up/confirm",
-  Success = "sign-up/success",
+  SignIn = "/sign-in",
+  SignUp = "/sign-up",
+  Confirm = "/activate/:uid/:token",
+  Success = "/sign-up/success",
   RegConfirmation = "/regonfirmation-confirmation",
   ResetPassword = "/Reset-Password",
   NewPassword = "/New-Password",
@@ -31,10 +32,15 @@ const Router = () => {
     <BrowserRouter>
       <Routes>
         <Route path={RoutesList.Home} element={<PagesContainer />}>
+          <Route path={RoutesList.Success} element={<Success />}></Route>
           <Route path={RoutesList.Home} element={<Home />}></Route>
           <Route path={RoutesList.SignIn} element={<SignIn />}></Route>
           <Route path={RoutesList.SignUp} element={<SignUp />}></Route>
           <Route path={RoutesList.SinglePost} element={<Post />}></Route>
+          <Route
+            path={RoutesList.Confirm}
+            element={<RegConfirmation />}
+          ></Route>
           <Route
             path={RoutesList.NewPassword}
             element={<NewPassword />}
