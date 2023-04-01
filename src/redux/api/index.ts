@@ -1,6 +1,5 @@
 import { create } from "apisauce";
-import { ActivateUserData, UserPayloadData } from "../reducers/@type";
-// import { ActivateUserData, UserPayloadData } from "../reducers/@type";
+import { ActivateUserData, SignInUserData, UserPayloadData } from "../reducers/@type";
 
 const API = create({
     baseURL: "https://studapi.teachmeskills.by"
@@ -14,15 +13,6 @@ const getSignlePost = (id: string) => {
     return API.get(`/blog/posts/${id}/`)
 }
 
-// const signUpUser = (data: UserPayloadData) => {
-//     return API.post("/auth/users/", data)
-// }
-
-// const activateUser = (data: ActivateUserData) => {
-//     return API.post("/auth/users/activation/", data)
-// }
-
-
 const signUpUser = (data: UserPayloadData) => {
     return API.post("/auth/users/", data)
 }
@@ -31,4 +21,21 @@ const activateUser = (data: ActivateUserData) => {
     return  API.post("/auth/users/activation/", data)
 }
 
-export default {getPost, getSignlePost, signUpUser, activateUser}
+const signInUser = (data: SignInUserData) => {
+    return API.post("/auth/jwt/create/", data)
+}
+
+
+const getUserInfo = (token: string) => {
+    return API.get(
+      "/auth/users/me/",
+      {},
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+  };
+  
+export default {getPost, getSignlePost, signUpUser, activateUser, signInUser, getUserInfo}

@@ -10,20 +10,27 @@ import UserName from "../../../components/UserName";
 import styles from "./Heder.module.scss";
 import { RoutesList } from "../../Router";
 import { UserIcon } from "../../../assets/icons";
+import { useDispatch, useSelector } from "react-redux";
+import { AuthSalectors, logoutUser } from "../../../redux/reducers/authSlice";
 
 const Heder = () => {
   const [isOpened, setOpened] = useState(false);
+
+  const navigate = useNavigate();
+  const isLoggedIn = useSelector(AuthSalectors.getLoggendIn);
+  const dispatch = useDispatch();
+
   const changeState = () => {
     return setOpened(!isOpened);
   };
-
-  const navigate = useNavigate();
 
   const onAuthButtonClic = () => {
     navigate(RoutesList.SignIn);
   };
 
-  const isLoggedIn = true;
+  const onLogoutClick = () => {
+    dispatch(logoutUser());
+  };
 
   const navButtonList = useMemo(
     () => [
@@ -58,13 +65,17 @@ const Heder = () => {
     ],
     [isLoggedIn]
   );
+
+  const name = useSelector(AuthSalectors.getUserNameInfo);
+  const userName = name?.username ? name?.username : "";
+
   const location = useLocation();
   return (
     <>
       <div className={styles.container}>
         <BurgerMenu isOpened={isOpened} changeState={changeState} />
         {isLoggedIn ? (
-          <UserName UserName={"Artem Malkin"} className={styles.userName} />
+          <UserName UserName={userName} className={styles.userName} />
         ) : (
           <Button
             title={<UserIcon />}
@@ -77,7 +88,7 @@ const Heder = () => {
         <div className={styles.mainContainer}>
           <div className={styles.actionsContainer}>
             {isLoggedIn && (
-              <UserName UserName={"Artem Malkin"} className={styles.menuUser} />
+              <UserName UserName={userName} className={styles.menuUser} />
             )}
 
             {navButtonList.map(({ title, key }) => {
@@ -99,7 +110,7 @@ const Heder = () => {
             <Button
               title={!isLoggedIn ? "Sign In" : "Log Out"}
               type={ButtonType.Secondary}
-              onClick={!isLoggedIn ? onAuthButtonClic : () => {}}
+              onClick={!isLoggedIn ? onAuthButtonClic : onLogoutClick}
               className={styles.authButton}
             />
           </div>

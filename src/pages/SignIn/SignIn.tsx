@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import classNames from "classnames";
 
 import styles from "./SignIn.module.scss";
@@ -7,11 +7,59 @@ import { ButtonType } from "../../utils/@globalTypes";
 import FormPage from "../FormPage/FormProps";
 import Frame from "../../components/Frame";
 import { Theme, useThemeContext } from "../../context/Theme/Context";
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { RoutesList } from "../Router";
 import Input from "../../components/Input/Input";
+import { useDispatch } from "react-redux";
+import { signInUser } from "../../redux/reducers/authSlice";
+
 const SingIn = () => {
   const { theme } = useThemeContext();
+
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
+  const dispatch = useDispatch();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (email.length === 0) {
+      setEmailError("Email is required field");
+    } else {
+      setEmailError("");
+    }
+  }, [email]);
+
+  useEffect(() => {
+    if (password.length === 0) {
+      setPasswordError("Email is required field");
+    } else {
+      setPasswordError("");
+    }
+  }, [password]);
+
+  const isValid = useMemo(() => {
+    return emailError.length === 0 && passwordError.length === 0;
+  }, [emailError, passwordError]);
+
+  const onChangeEmail = (value: string) => {
+    setEmail(value);
+  };
+  const onChangePassword = (value: string) => {
+    setPassword(value);
+  };
+
+  const onSignInClick = () => {
+    dispatch(
+      signInUser({
+        data: { email, password },
+        callback: () => navigate(RoutesList.Home),
+      })
+    );
+  };
 
   return (
     <div className={classNames({ [styles.darkWrapper]: theme === Theme.Dark })}>
@@ -19,17 +67,21 @@ const SingIn = () => {
       <Frame>
         <div className={styles.inputWrapper}>
           <Input
-            onChange={() => {}}
+            value={email}
+            onChange={onChangeEmail}
             type={"text"}
             title={"Email"}
             placeholder={"Your email"}
+            errorText={emailError}
           />
           <div>
             <Input
-              onChange={() => {}}
+              value={password}
+              onChange={onChangePassword}
               type={"password"}
               title={"Password"}
               placeholder={"Your password"}
+              errorText={passwordError}
             />
 
             <div
@@ -46,7 +98,8 @@ const SingIn = () => {
             className={styles.btn}
             title={"Sign In"}
             type={ButtonType.Primary}
-            onClick={() => {}}
+            disabled={!isValid}
+            onClick={onSignInClick}
           />
           <div
             className={classNames(styles.signUp, {

@@ -35,8 +35,15 @@ export type UserPayloadData = {
 
 export type ActivateUserData = {
     uid: string;
-    token: string
+    token: string;
+}
+
+
+export type SignInUserData = {
+    email: string;
+    password: string;
 }
 
 export type SignUpUserPauload = PayloadWithCallback<UserPayloadData>
 export type ActivateUserPayload = PayloadWithCallback<ActivateUserData>
+export type SignInUserPayload = PayloadWithCallback<SignInUserData>

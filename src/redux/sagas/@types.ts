@@ -8,7 +8,18 @@ export type AllPostsRosponse = {
 }
 
 export type signUpUserResponse = {
-    "username": string,
-    "email": string,
-    "id": number
+    username: string;
+    email: string;
+    id: number;
+}
+
+export type SignInResponse = {
+    access: string;
+    refresh: string;
+}
+
+export type getUserInfoResponse = {
+    username: string;
+    id: number;
+    email: string;
 }

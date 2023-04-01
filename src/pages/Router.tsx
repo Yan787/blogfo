@@ -1,6 +1,6 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./Home";
 import PagesContainer from "./PagesContainer";
 import SignIn from "./SignIn";
@@ -11,6 +11,9 @@ import Post from "./Post";
 import ResetPassword from "./ResetPassword";
 import NewPassword from "./NewPassword";
 import Success from "./Success";
+import { useDispatch, useSelector } from "react-redux";
+import { AuthSalectors, getUserInfo } from "../redux/reducers/authSlice";
+// import { AuthSalectors, getUserInfo } from "../redux/reducers/authSlice";
 
 export enum RoutesList {
   Home = "/",
@@ -28,6 +31,13 @@ export enum RoutesList {
 }
 
 const Router = () => {
+  const dispatch = useDispatch();
+  const isLoggedIn = useSelector(AuthSalectors.getLoggendIn);
+
+  useEffect(() => {
+    isLoggedIn && dispatch(getUserInfo());
+  }, [isLoggedIn]);
+
   return (
     <BrowserRouter>
       <Routes>
@@ -37,6 +47,12 @@ const Router = () => {
           <Route path={RoutesList.SignIn} element={<SignIn />}></Route>
           <Route path={RoutesList.SignUp} element={<SignUp />}></Route>
           <Route path={RoutesList.SinglePost} element={<Post />}></Route>
+          <Route
+            path={RoutesList.AddPost}
+            element={
+              isLoggedIn ? <Home /> : <Navigate to={RoutesList.SignIn} />
+            }
+          />
           <Route
             path={RoutesList.Confirm}
             element={<RegConfirmation />}
