@@ -3,12 +3,13 @@ import classNames from "classnames";
 
 import styles from "./SignIn.module.scss";
 import Imput from "../../components/Input/Input";
-import Buttom from "../../components/Buttom";
-import { ButtonType } from "../../components/Buttom/Button";
+import Buttom from "../../components/Button";
+import { ButtonType } from "../../utils/@globalTypes";
 import FormPage from "../FormPage/FormProps";
 import Frame from "../../components/Frame";
 import { Theme, useThemeContext } from "../../context/Theme/Context";
-
+import { NavLink } from "react-router-dom";
+import { RoutesList } from "../Router";
 const SingIn = () => {
   const { theme } = useThemeContext();
 
@@ -42,14 +43,14 @@ const SingIn = () => {
             })}
           >
             Don’t have an account?{" "}
-            <a
+            <NavLink
+              to={RoutesList.SignUp}
               className={classNames(styles.link, {
                 [styles.darkLink]: theme === Theme.Dark,
               })}
-              href="#"
             >
               &nbsp;Sign Up
-            </a>
+            </NavLink>
           </div>
         </div>
       </Frame>

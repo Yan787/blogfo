@@ -1,12 +1,12 @@
-import React, { useState } from "react";
-import classNames from "classnames";
+import React, { useEffect, useState } from "react";
 
 import Title from "../../components/Title";
 import Tabs from "../../components/Tabs";
 import CardsList from "../../components/CardsList";
 import { TabsNames } from "../../components/Tabs/types";
-import { Theme, useThemeContext } from "../../context/Theme/Context";
-import styles from "./Home.module.scss";
+import SelectedPostModal from "./SelectedPostModal";
+import { useDispatch, useSelector } from "react-redux";
+import { getAllPosts, PostSelectors } from "../../redux/reducers/postSlice";
 
 const MOCK_CARD = [
   {
@@ -162,22 +162,26 @@ const TABS_LIST = [
 ];
 
 const Home = () => {
-  const { theme } = useThemeContext();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getAllPosts());
+  }, []);
+
+  const postsList = useSelector(PostSelectors.getAllPosts);
 
   const [activeTab, setActivTab] = useState(TabsNames.All);
   const onTabClick = (key: TabsNames) => () => setActivTab(key);
-
   return (
-    <div
-      className={classNames({ [styles.darkContainer]: theme === Theme.Dark })}
-    >
+    <div>
       <Title title={"Blog"} />
       <Tabs
         tabsList={TABS_LIST}
         activeTab={activeTab}
         onTabClick={onTabClick}
       />
-      <CardsList cardsList={MOCK_CARD} />
+      <CardsList cardsList={postsList} />
+      <SelectedPostModal />
     </div>
   );
 };

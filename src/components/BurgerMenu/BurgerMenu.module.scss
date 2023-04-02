@@ -1,6 +1,7 @@
 @import "./src/assets/colors";
 
 .btn {
+  border-right: 1px solid $Primary-secondary!important;
   border-radius: 0;
   padding: 0;
   width: 84px;
@@ -9,6 +10,7 @@
   align-items: center;
   justify-content: center;
   &:hover {
-    background-color: $Primary;
+    background-color: $Primary !important;
   }
 }
+

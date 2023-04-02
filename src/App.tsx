@@ -1,26 +1,24 @@
 import React, { useState } from "react";
-import Home from "./pages/Home";
-import Post from "./pages/Post";
 import ThemeProvider from "./context/Theme/Provider";
 import { Theme } from "./context/Theme/Context";
-import ThemeSwitcher from "./components/ThemeSwitcher";
-import SignIn from "./pages/SignIn";
-import Success from "./pages/Success";
+import Router from "./pages/Router";
+import { useDispatch, useSelector } from "react-redux";
+import { chengeTheme } from "./redux/reducers/themeSlice";
+import { ThemeSelector } from "./redux/reducers/themeSlice";
 
 const App = () => {
-  const [theme, setTheme] = useState(Theme.Light);
+  // const [theme, setTheme] = useState(Theme.Dark);
+  const dispatch = useDispatch();
+
+  const theme = useSelector(ThemeSelector.getThemeValue);
+
   const onChengeTheme = (value: Theme) => {
-    setTheme(value);
+    dispatch(chengeTheme(value));
   };
+
   return (
     <ThemeProvider theme={theme} onChengeTheme={onChengeTheme}>
-      <Success />
-      <ThemeSwitcher />
-      <SignIn />
-      <ThemeSwitcher />
-      <Post />
-      <ThemeSwitcher />
-      <Home />
+      <Router />
     </ThemeProvider>
   );
 };

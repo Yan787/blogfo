@@ -7,7 +7,7 @@ export enum Theme {
 
 const initialState = {
     theme: Theme.Light,
-    onChengeTheme:(value:Theme)=>{}
+    onChengeTheme: (value:Theme)=> {}
 }
 
 export const ThemeContext = createContext(initialState)

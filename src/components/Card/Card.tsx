@@ -2,7 +2,8 @@ import React, { FC } from "react";
 import classNames from "classnames";
 
 import styles from "./Card.module.scss";
-import { CardProps, CardSize } from "./types";
+import { CardProps } from "./types";
+
 import {
   LikeIcon,
   DislikeIcon,
@@ -11,14 +12,53 @@ import {
 } from "../../assets/icons";
 import { useThemeContext } from "../../context/Theme/Context";
 import { Theme } from "../../context/Theme/Context";
+import { useDispatch, useSelector } from "react-redux";
+import { setSelectedPost } from "../../redux/reducers/postSlice";
+import { setPostVisible } from "../../redux/reducers/postSlice";
+import { PostSelectors } from "../../redux/reducers/postSlice";
+import { setStatus, LikeStatus } from "../../redux/reducers/postSlice";
+import { setBookmarkStatus } from "../../redux/reducers/postSlice";
+import { FilledBookmarkicon } from "../../assets/icons";
+import { CardSize } from "../../utils/@globalTypes";
+import { useNavigate } from "react-router-dom";
 
-const Card: FC<CardProps> = ({ Card, Size }) => {
+const Card: FC<CardProps> = ({ card, size }) => {
+  const { title, image, date, text, id } = card;
+
   const { theme } = useThemeContext();
 
-  const { title, image, date, text } = Card;
-  const isMedium = Size === CardSize.Medium;
-  const isSmall = Size === CardSize.Small;
+  const isMedium = size === CardSize.Medium;
+  const isSmall = size === CardSize.Small;
   const isDark = theme === Theme.Dark;
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const selector = useSelector(PostSelectors.getVisibleSelectedModal);
+
+  const onClickMore = () => {
+    dispatch(setSelectedPost(card));
+    dispatch(setPostVisible(true));
+  };
+
+  const onStatusClick = (status: LikeStatus) => () => {
+    dispatch(setStatus({ status, card }));
+  };
+
+  const likePost = useSelector(PostSelectors.getLikedPost);
+  const dislikePost = useSelector(PostSelectors.getDislikedPost);
+  const isVisible = useSelector(PostSelectors.getVisibleSelectedModal);
+  const savedPosts = useSelector(PostSelectors.getBookmarkStatus);
+
+  const likeIndex = likePost.findIndex((post) => post.id === card.id);
+  const dislikeIndex = dislikePost.findIndex((post) => post.id === card.id);
+  const bookmarkIndex = savedPosts.findIndex((post) => post.id === card.id);
+
+  const onBookmarkClick = () => {
+    dispatch(setBookmarkStatus({ card }));
+  };
+  const onTitleClick = () => {
+    navigate(`/blog/${id}`);
+  };
 
   return (
     <div
@@ -40,13 +80,14 @@ const Card: FC<CardProps> = ({ Card, Size }) => {
             <div
               className={classNames(styles.title, {
                 [styles.mediumTitle]: isMedium || isSmall,
-                [styles.darkTitle]: isDark,
+                [styles.darkTitle]: !isVisible && isDark,
               })}
+              onClick={onTitleClick}
             >
               {title}
             </div>
           </div>
-          {Size === CardSize.Large && <div className={styles.text}>{text}</div>}
+          {size === CardSize.Large && <div className={styles.text}>{text}</div>}
         </div>
         <img
           src={image}
@@ -59,27 +100,31 @@ const Card: FC<CardProps> = ({ Card, Size }) => {
       <div className={styles.footer}>
         <div
           className={classNames(styles.iconContainer, {
-            [styles.darkIconContainer]: isDark,
+            [styles.darkIconContainer]: !isVisible && isDark,
           })}
         >
-          <div>
+          <div onClick={onStatusClick(LikeStatus.Like)}>
             <LikeIcon />
+            {likeIndex > -1 && 1}
           </div>
-          <div>
+          <div onClick={onStatusClick(LikeStatus.DisLike)}>
             <DislikeIcon />
+            {dislikeIndex > -1 && 1}
           </div>
         </div>
         <div
           className={classNames(styles.iconContainer, {
-            [styles.darkIconContainer]: isDark,
+            [styles.darkIconContainer]: !isVisible && isDark,
           })}
         >
-          <div>
-            <BookmarkIcon />
+          <div onClick={onBookmarkClick}>
+            {bookmarkIndex === -1 ? <BookmarkIcon /> : <FilledBookmarkicon />}
           </div>
-          <div>
-            <MoreIcon />
-          </div>
+          {!selector && (
+            <div onClick={onClickMore}>
+              <MoreIcon />
+            </div>
+          )}
         </div>
       </div>
     </div>
