@@ -12,6 +12,7 @@ import { RoutesList } from "../../Router";
 import { UserIcon } from "../../../assets/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthSalectors, logoutUser } from "../../../redux/reducers/authSlice";
+import UserName from "../../../components/UserName/UserName";
 
 const Heder = () => {
   const [isOpened, setOpened] = useState(false);
@@ -75,8 +76,7 @@ const Heder = () => {
       <div className={styles.container}>
         <BurgerMenu isOpened={isOpened} changeState={changeState} />
         {isLoggedIn ? (
-          // <UserName UserName={userName} className={styles.userName} />
-          userName
+          <UserName userName={userName} className={styles.userName} />
         ) : (
           <Button
             title={<UserIcon />}
@@ -88,9 +88,9 @@ const Heder = () => {
       {isOpened && (
         <div className={styles.mainContainer}>
           <div className={styles.actionsContainer}>
-            {isLoggedIn &&
-              // <UserName UserName={userName} className={styles.menuUser} />
-              userName}
+            {isLoggedIn && (
+              <UserName userName={userName} className={styles.menuUser} />
+            )}
 
             {navButtonList.map(({ title, key }) => {
               return (

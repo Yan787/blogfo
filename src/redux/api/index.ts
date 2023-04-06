@@ -44,7 +44,7 @@ const verifyToken = (token: string) => {
 };
 
 const refreshToken = (token: string) => {
-    return API.post("/auth/jwt/refresh/", { token })
+    return API.post("/auth/jwt/refresh/", { refresh: token })
 }
 
 const getMyPost = (token: string) => {

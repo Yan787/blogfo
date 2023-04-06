@@ -10,9 +10,9 @@ function* callCheckingAuth(ApiCall: any, ...params: any) {
     const refreshToken = localStorage.getItem(REFRESH_TOKEN_KEY)
 
     if(accessToken && refreshToken) {
-        const Response: ApiResponse<any> = yield call(ApiCall, accessToken, ...params)
+        const response: ApiResponse<any> = yield call(ApiCall, accessToken, ...params)
 
-        if(Response.status === 401) {
+        if(response.status === 401) {
             const accessResponse: ApiResponse<any> = yield call(API.verifyToken, accessToken)
 
             if(accessResponse.status === 401) {
@@ -33,7 +33,7 @@ function* callCheckingAuth(ApiCall: any, ...params: any) {
                 }
             }
         } else {
-            return Response
+            return response
         }
     } else {
         yield put(logoutUser())
