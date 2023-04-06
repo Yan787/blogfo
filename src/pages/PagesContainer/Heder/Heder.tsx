@@ -6,7 +6,7 @@ import BurgerMenu from "../../../components/BurgerMenu";
 import Button from "../../../components/Button/Button";
 import { ButtonType } from "../../../utils/@globalTypes";
 import ThemeSwitcher from "../../../components/ThemeSwitcher";
-import UserName from "../../../components/UserName";
+// import UserName from "../../../components/UserName";
 import styles from "./Heder.module.scss";
 import { RoutesList } from "../../Router";
 import { UserIcon } from "../../../assets/icons";
@@ -75,7 +75,8 @@ const Heder = () => {
       <div className={styles.container}>
         <BurgerMenu isOpened={isOpened} changeState={changeState} />
         {isLoggedIn ? (
-          <UserName UserName={userName} className={styles.userName} />
+          // <UserName UserName={userName} className={styles.userName} />
+          userName
         ) : (
           <Button
             title={<UserIcon />}
@@ -87,9 +88,9 @@ const Heder = () => {
       {isOpened && (
         <div className={styles.mainContainer}>
           <div className={styles.actionsContainer}>
-            {isLoggedIn && (
-              <UserName UserName={userName} className={styles.menuUser} />
-            )}
+            {isLoggedIn &&
+              // <UserName UserName={userName} className={styles.menuUser} />
+              userName}
 
             {navButtonList.map(({ title, key }) => {
               return (

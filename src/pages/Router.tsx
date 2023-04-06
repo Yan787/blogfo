@@ -13,7 +13,6 @@ import NewPassword from "./NewPassword";
 import Success from "./Success";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthSalectors, getUserInfo } from "../redux/reducers/authSlice";
-// import { AuthSalectors, getUserInfo } from "../redux/reducers/authSlice";
 
 export enum RoutesList {
   Home = "/",

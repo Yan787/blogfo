@@ -6,6 +6,7 @@ import { PayloadAction } from "@reduxjs/toolkit"
 import { ActivateUserPayload, SignInUserPayload, SignUpUserPauload } from "../reducers/@type"
 import { getUserInfoResponse, SignInResponse, signUpUserResponse } from "./@types"
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../../utils/constants"
+import callCheckingAuth from "./callCheckingAuth"
 
 function* signUpUserWorker(actions: PayloadAction<SignUpUserPauload>) {
     const {data, callback} = actions.payload
@@ -48,18 +49,15 @@ function* logoutUserWorker(){
 
 
 
+
 function* getUserInfoWorker() {
-    const accessToken = localStorage.getItem(ACCESS_TOKEN_KEY)
-    if(accessToken) {
-        const {ok, problem, data}: ApiResponse<getUserInfoResponse> = yield call(API.getUserInfo, accessToken)
+        const {ok, problem, data}: ApiResponse<getUserInfoResponse> = yield callCheckingAuth(API.getUserInfo)
         if(ok && data) {
             yield put(setUserInfo(data))
         } else {
             console.warn("Error sign in user", problem)
         }
-    }
 }
-
 
 export default function* postSaga() {
     yield all ([

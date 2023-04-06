@@ -26,6 +26,7 @@ const signInUser = (data: SignInUserData) => {
 }
 
 
+
 const getUserInfo = (token: string) => {
     return API.get(
       "/auth/users/me/",
@@ -37,5 +38,25 @@ const getUserInfo = (token: string) => {
       }
     );
   };
-  
-export default {getPost, getSignlePost, signUpUser, activateUser, signInUser, getUserInfo}
+
+const verifyToken = (token: string) => {
+    return API.post("/auth/jwt/verify/", { token });
+};
+
+const refreshToken = (token: string) => {
+    return API.post("/auth/jwt/refresh/", { token })
+}
+
+const getMyPost = (token: string) => {
+    return API.get("/blog/posts/my_posts/",
+    {}, 
+      {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      }
+    );
+}
+
+export default {getPost, getSignlePost, signUpUser, activateUser, signInUser, getUserInfo, verifyToken, refreshToken, getMyPost}
+
