@@ -1,8 +1,4 @@
-export enum TabsNames {
-    All,
-    Favorites,
-    Popular
-}
+import { TabsNames } from "../../utils/@globalTypes";
 
 export type TabsType = {
     title: string;

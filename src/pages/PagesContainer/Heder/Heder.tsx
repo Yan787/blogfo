@@ -68,7 +68,7 @@ const Heder = () => {
   );
 
   const name = useSelector(AuthSalectors.getUserNameInfo);
-  const userName = name?.username ? name?.username : "";
+  const userName = name?.username ? name?.username : "где твоё имя?";
 
   const location = useLocation();
   return (

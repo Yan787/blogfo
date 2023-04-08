@@ -101,6 +101,7 @@ const Card: FC<CardProps> = ({ card, size }) => {
         <div
           className={classNames(styles.iconContainer, {
             [styles.darkIconContainer]: !isVisible && isDark,
+            [styles.lightIconContainer]: !isVisible && theme === Theme.Light,
           })}
         >
           <div onClick={onStatusClick(LikeStatus.Like)}>
@@ -115,6 +116,7 @@ const Card: FC<CardProps> = ({ card, size }) => {
         <div
           className={classNames(styles.iconContainer, {
             [styles.darkIconContainer]: !isVisible && isDark,
+            [styles.lightIconContainer]: !isVisible && theme === Theme.Light,
           })}
         >
           <div onClick={onBookmarkClick}>

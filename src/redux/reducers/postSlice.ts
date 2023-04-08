@@ -16,7 +16,7 @@ type initialType = {
 	savedPosts: CardListType,
 	postList: CardListType,
 	singlePost: CardType | null,
-	myPost: CardListType | null,
+	myPost: CardListType,
 }
 const initialState: initialType = {
 	selectedPost: null,
@@ -26,7 +26,7 @@ const initialState: initialType = {
 	savedPosts: [],
 	postList: [],
 	singlePost: null,
-	myPost: null,
+	myPost: [],
 };
 
 const postSlice = createSlice({

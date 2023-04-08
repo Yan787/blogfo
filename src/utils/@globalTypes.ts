@@ -22,3 +22,11 @@ export enum ButtonType {
     Secondary = `Secondary`,
     Errer = `Errer`,
 }
+
+export enum TabsNames {
+    All,
+    MyPosts,
+    Popular,
+    Favourites,
+}
+

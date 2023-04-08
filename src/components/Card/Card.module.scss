@@ -6,6 +6,8 @@
     gap: 30px;
     padding-bottom: 40px;
     border-bottom: 1px solid $Medium;
+    transition: all 1s;
+    
     max-width: 736px;
     height: 450px;
     justify-content: space-between;
@@ -52,6 +54,7 @@
     font-size: 32px;
     line-height: 44px;
     color: $Secondary;
+    transition: all 1s;
     &:hover {
         color:$Primary-secondary !important;
         cursor: pointer;
@@ -111,15 +114,27 @@
 
 .darkTitle {
     color: $White;
+    transition: all 1s;
 }
 
 .darkIconContainer {
     div > svg > path {
+     transition: all 1s;
         fill: $White;
     }
 }
 
-.darkContainer {
-    border-bottom: 1px solid $Gray;
+.lightIconContainer {
+    div > svg > path {
+        transition: all 1s;
+       }
+}
 
+.darkContainer {
+    transition: all 1s;
+    border-bottom: 1px solid $Gray;
+}
+
+.lightContainer {
+    transition: all 1s;
 }
