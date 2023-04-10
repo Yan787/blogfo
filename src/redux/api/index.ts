@@ -5,8 +5,8 @@ const API = create({
     baseURL: "https://studapi.teachmeskills.by"
 })
 
-const getPost = () => {
-    return API.get("/blog/posts/?limit=12")
+const getPost = (search?: string) => {
+    return API.get("/blog/posts/", {limit: 12, search})
 }
 
 const getSignlePost = (id: string) => {

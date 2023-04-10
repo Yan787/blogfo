@@ -13,6 +13,7 @@ import NewPassword from "./NewPassword";
 import Success from "./Success";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthSalectors, getUserInfo } from "../redux/reducers/authSlice";
+import Search from "./Search";
 
 export enum RoutesList {
   Home = "/",
@@ -46,6 +47,7 @@ const Router = () => {
           <Route path={RoutesList.SignIn} element={<SignIn />}></Route>
           <Route path={RoutesList.SignUp} element={<SignUp />}></Route>
           <Route path={RoutesList.SinglePost} element={<Post />}></Route>
+          <Route path={RoutesList.Search} element={<Search />}></Route>
           <Route
             path={RoutesList.AddPost}
             element={

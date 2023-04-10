@@ -6,11 +6,12 @@ import { Theme, useThemeContext } from "../../context/Theme/Context";
 type InputProps = {
   value?: string;
   onChange: (value: string) => void;
-  title: string;
+  title?: string;
   placeholder: string;
   disabled?: boolean;
   errorText?: string;
   type?: string;
+  inputClassName?: string;
 };
 const Input: FC<InputProps> = ({
   value,
@@ -20,6 +21,7 @@ const Input: FC<InputProps> = ({
   placeholder,
   disabled,
   errorText,
+  inputClassName,
 }) => {
   const onChangeText = (e: ChangeEvent<HTMLInputElement>) => {
     onChange(e.target.value);
@@ -27,16 +29,18 @@ const Input: FC<InputProps> = ({
   const { theme } = useThemeContext();
   return (
     <div className={styles.container}>
-      <div
-        className={classNames(styles.title, {
-          [styles.darkText]: theme === Theme.Dark,
-        })}
-      >
-        {title}
-      </div>
+      {title && (
+        <div
+          className={classNames(styles.title, {
+            [styles.darkText]: theme === Theme.Dark,
+          })}
+        >
+          {title}
+        </div>
+      )}
       <input
         value={value}
-        className={classNames(styles.input, {
+        className={classNames(styles.input, inputClassName, {
           [styles.disabled]: disabled,
           [styles.errorText]: errorText,
         })}

@@ -20,4 +20,10 @@
 .darkFrame {
     background-color: $Secondary;
     border: 1px solid $Gray;
+    transition: all 1s;
+}
+
+.lightFrame {
+    transition: all 1s;
+    background-color: $White;
 }

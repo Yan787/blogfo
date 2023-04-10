@@ -6,8 +6,6 @@
     gap: 30px;
     padding-bottom: 40px;
     border-bottom: 1px solid $Medium;
-    transition: all 1s;
-    
     max-width: 736px;
     height: 450px;
     justify-content: space-between;
@@ -56,8 +54,10 @@
     color: $Secondary;
     transition: all 1s;
     &:hover {
+        transition: all 0s;
         color:$Primary-secondary !important;
         cursor: pointer;
+        text-decoration: underline;
     }
 }
 

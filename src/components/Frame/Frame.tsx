@@ -14,6 +14,7 @@ const Frame: FC<FrameProps> = ({ children }) => {
       <div
         className={classNames(styles.frame, {
           [styles.darkFrame]: theme === Theme.Dark,
+          [styles.lightFrame]: theme === Theme.Light,
         })}
       >
         {children}

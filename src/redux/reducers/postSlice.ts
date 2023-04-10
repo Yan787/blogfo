@@ -17,6 +17,8 @@ type initialType = {
 	postList: CardListType,
 	singlePost: CardType | null,
 	myPost: CardListType,
+	searchedPost: CardListType,
+	searchedValue: string
 }
 const initialState: initialType = {
 	selectedPost: null,
@@ -27,6 +29,8 @@ const initialState: initialType = {
 	postList: [],
 	singlePost: null,
 	myPost: [],
+	searchedPost: [],
+	searchedValue: "",
 };
 
 const postSlice = createSlice({
@@ -83,11 +87,21 @@ const postSlice = createSlice({
 			getMyPost: (_, __: PayloadAction<undefined>) => {},
 			setMyPost: (state, action: PayloadAction<CardListType>) => {
 				state.myPost = action.payload
-			}
+			},
+
+			getSearchedPost: (state, action: PayloadAction<string>) => {
+				state.searchedValue = action.payload
+			},
+			setSearchedPost: (state, action: PayloadAction<CardListType>) => {
+				state.searchedPost = action.payload
+			},
 	},
 });
 
-export const { setSelectedPost, setPostVisible, setStatus, setBookmarkStatus, getAllPosts, setAllPosts, getSinglePost, setSinglePost, getMyPost, setMyPost } = postSlice.actions;
+export const { 
+	setSelectedPost, setPostVisible, setStatus, setBookmarkStatus, getAllPosts, setAllPosts,
+	getSinglePost, setSinglePost, getMyPost, setMyPost, getSearchedPost, setSearchedPost, 
+} = postSlice.actions;
 
 export default postSlice.reducer;
 
@@ -100,4 +114,6 @@ export const PostSelectors = {
 	getAllPosts: (state: RootState) => state.post.postList,
 	getSinglePost: (state: RootState) => state.post.singlePost,
 	getMyPost: (state: RootState) => state.post.myPost,
+	getSearchedPost: (state: RootState) => state.post.searchedPost,
+	getSearchedValue: (state: RootState) => state.post.searchedValue,
 }
