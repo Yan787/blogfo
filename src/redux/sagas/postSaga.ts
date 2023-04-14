@@ -6,18 +6,20 @@ import API from "../api"
 import { CardType } from "../../utils/@globalTypes";
 import { PayloadAction } from "@reduxjs/toolkit";
 import callCheckingAuth from "./callCheckingAuth";
+import { GetAllPostsPayload } from "../reducers/@type";
 
-function* getAllPostWorker() {
-    const {ok, data, problem}: ApiResponse<AllPostsRosponse> = yield call(API.getPost)
+function* getAllPostWorker(action: PayloadAction<GetAllPostsPayload>) {
+    const {ordering, search, offset } = action.payload
+    const {ok, data, problem}: ApiResponse<AllPostsRosponse> = yield call(API.getPost, offset, ordering, '')
     if(ok && data) {
-        yield put(setAllPosts(data.results))
+        yield put(setAllPosts({cardList: data.results, postsCount: data.count}))
     } else {
         console.warn("Error getting all Posts", problem)
     }
 }
 
 function* getSearchPostWorker(action: PayloadAction<string>) {
-    const {ok, data, problem}: ApiResponse<AllPostsRosponse> = yield call(API.getPost, action.payload)
+    const {ok, data, problem}: ApiResponse<AllPostsRosponse> = yield call(API.getPost, 0, '', action.payload)
     if(ok && data) {
         yield put(setSearchedPost(data.results))
     } else {

@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from "react";
+import React, { useMemo, useState, KeyboardEvent } from "react";
 import { NavLink, useLocation, useNavigate } from "react-router-dom";
 import classNames from "classnames";
 
@@ -8,7 +8,7 @@ import { ButtonType } from "../../../utils/@globalTypes";
 import ThemeSwitcher from "../../../components/ThemeSwitcher";
 import styles from "./Heder.module.scss";
 import { RoutesList } from "../../Router";
-import { SearchIcon, UserIcon } from "../../../assets/icons";
+import { CloseIcon, SearchIcon, UserIcon } from "../../../assets/icons";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthSalectors, logoutUser } from "../../../redux/reducers/authSlice";
 import UserName from "../../../components/UserName/UserName";
@@ -50,22 +50,22 @@ const Heder = () => {
               key: RoutesList.AddPost,
             },
           ]),
-      {
-        title: "Sign Up",
-        key: RoutesList.SignUp,
-      },
-      {
-        title: "Confirmation",
-        key: RoutesList.RegConfirmation,
-      },
-      {
-        title: "ResetPassword",
-        key: RoutesList.ResetPassword,
-      },
-      {
-        title: "New password",
-        key: RoutesList.NewPassword,
-      },
+      // {
+      //   title: "Sign Up",
+      //   key: RoutesList.SignUp,
+      // },
+      // {
+      //   title: "Confirmation",
+      //   key: RoutesList.RegConfirmation,
+      // },
+      // {
+      //   title: "ResetPassword",
+      //   key: RoutesList.ResetPassword,
+      // },
+      // {
+      //   title: "New password",
+      //   key: RoutesList.NewPassword,
+      // },
     ],
     [isLoggedIn]
   );
@@ -75,6 +75,11 @@ const Heder = () => {
     if (isInputOpened) {
       dispatch(getSearchedPost(searchValue));
       navigate(RoutesList.Search);
+    }
+  };
+  const onKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Enter") {
+      onClickSearchButton();
     }
   };
 
@@ -96,6 +101,7 @@ const Heder = () => {
                 [styles.imputLoggedIn]: !isLoggedIn,
               })}
               onChange={setSearchValue}
+              onKeyDown={onKeyDown}
             />
           )}
         </div>

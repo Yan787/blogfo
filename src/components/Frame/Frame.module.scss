@@ -4,6 +4,7 @@
     display: flex;
     width: 100%;
     justify-content: center;
+    margin-bottom: 80px;
 }
 
 .frame {
@@ -11,7 +12,7 @@
     padding: 40px;
     max-width: 624px;
     box-sizing: border-box;
-    background-color: $Extra-light;
+    background-color: $Extra-light !important;
     display: flex;
     flex-direction: column;
     gap: 48px;
