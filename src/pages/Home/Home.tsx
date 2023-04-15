@@ -87,13 +87,17 @@ const Home = () => {
           title="title"
           type={ButtonType.Primary}
           onClick={onOrderClick(Order.Title)}
-          className={styles.orderButton}
+          className={classNames(styles.orderButton, {
+            [styles.activStylesBtn]: ordering === Order.Title,
+          })}
         />{" "}
         <Button
           title="data"
           type={ButtonType.Primary}
           onClick={onOrderClick(Order.Date)}
-          className={styles.orderButton}
+          className={classNames(styles.orderButton, {
+            [styles.activStylesBtn]: ordering === Order.Date,
+          })}
         />
       </div>
       <CardsList cardsList={getCurrentList()} />

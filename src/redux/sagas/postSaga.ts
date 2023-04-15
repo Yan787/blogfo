@@ -9,8 +9,8 @@ import callCheckingAuth from "./callCheckingAuth";
 import { GetAllPostsPayload } from "../reducers/@type";
 
 function* getAllPostWorker(action: PayloadAction<GetAllPostsPayload>) {
-    const {ordering, search, offset } = action.payload
-    const {ok, data, problem}: ApiResponse<AllPostsRosponse> = yield call(API.getPost, offset, ordering, '')
+    const { offset, ordering } = action.payload
+    const {ok, data, problem}: ApiResponse<AllPostsRosponse> = yield call(API.getPost, offset, ordering)
     if(ok && data) {
         yield put(setAllPosts({cardList: data.results, postsCount: data.count}))
     } else {

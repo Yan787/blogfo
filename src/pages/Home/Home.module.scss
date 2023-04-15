@@ -81,3 +81,26 @@
 	background-color: $Error;
 	border-left: 1px solid black;
 }
+
+.activStylesBtn {
+	@keyframes change-background {
+        0% {
+          background-color: #000000;
+		  color: #fff6f6;
+        }
+        50% {
+          background-color: #d8d8d8;
+		  color: #000000;
+        }
+        100% {
+          background-color: #000000;
+		  color: #fff6f6;
+
+        }
+      }
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      padding: 0;
+      animation: change-background 0.3s ease infinite;
+}
