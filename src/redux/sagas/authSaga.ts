@@ -3,10 +3,11 @@ import { ApiResponse } from "apisauce"
 import { activateUser, getUserInfo, logoutUser, setLoggedIn, setUserInfo, signInUser, signUser } from "../reducers/authSlice"
 import API from "../api"
 import { PayloadAction } from "@reduxjs/toolkit"
-import { ActivateUserPayload, SignInUserPayload, SignUpUserPauload } from "../reducers/@type"
+import { ActivateUserPayload, AddPostPayload, SignInUserPayload, SignUpUserPauload } from "../reducers/@type"
 import { getUserInfoResponse, SignInResponse, signUpUserResponse } from "./@types"
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../../utils/constants"
 import callCheckingAuth from "./callCheckingAuth"
+import { addNewPost } from "../reducers/postSlice"
 
 function* signUpUserWorker(actions: PayloadAction<SignUpUserPauload>) {
     const {data, callback} = actions.payload
@@ -59,6 +60,17 @@ function* getUserInfoWorker() {
         }
 }
 
+
+function* addNewPostWorker(actions: PayloadAction<AddPostPayload>) {
+    const {data, callback} = actions.payload
+    const {ok, problem}: ApiResponse<undefined> = yield callCheckingAuth(API.addNewPost, data)
+    if(ok) {
+        callback()
+    } else {
+        console.warn("Error adding post", problem)
+    }
+}
+
 export default function* postSaga() {
     yield all ([
         takeLatest(signUser, signUpUserWorker),
@@ -66,6 +78,7 @@ export default function* postSaga() {
         takeLatest(signInUser, signInUserWorker),
         takeLatest(logoutUser, logoutUserWorker),
         takeLatest(getUserInfo, getUserInfoWorker),
+        takeLatest(addNewPost, addNewPostWorker),
     ])
 }
 

@@ -20,7 +20,6 @@
 	border-radius: 2px;
 	color: #53607a;
 	outline: none;
-	padding: 4px;
 	user-select: none;
 	&:hover {
 	cursor: pointer;
@@ -30,6 +29,7 @@
 	}
 	
 	.linkPage {
+	padding: 4px;
 	outline: none;
 	&:focus {
 	outline: none;
@@ -40,26 +40,30 @@
 	border: 1px solid $Primary;
 	color: $Primary;
 	}
-	.arrowButton {
-	margin: auto;
+	
+.arrowButton {
 	align-items: flex-start;
 	list-style-type: none;
 	padding: 4px;
 	border-radius: 4px;
 	user-select: none;
 	&:hover {
-	background-color: $Primary-secondary;
-	color: $White;
-	cursor: pointer;
+	  svg > path {
+		fill: $White;
+	  }
+	  background-color: $Primary-secondary;
+	  cursor: pointer;
 	}
+	&:first-child {
+	  margin-right: auto;
 	}
-	.blockedButton {
-	&:hover {
-	background-color: transparent;
-	color: $Secondary;
-	cursor: not-allowed;
+	&:last-child {
+	  margin-left: auto;
+	  a > svg {
+		transform: rotate(180deg);
+	  }
 	}
-	}
+  }
 
 .wrapper {
 	display: flex;
@@ -95,12 +99,11 @@
         100% {
           background-color: #000000;
 		  color: #fff6f6;
-
         }
       }
       height: 100%;
       width: 100%;
-      margin: 0;
+	  margin: 0;
       padding: 0;
       animation: change-background 0.3s ease infinite;
 }

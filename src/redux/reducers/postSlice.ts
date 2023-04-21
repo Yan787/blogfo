@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Card, { CardType } from "../../components/Card";
 import { CardListType } from "../../utils/@globalTypes";
 import { RootState } from "../store";
-import { GetAllPostsPayload, SetAllPostPayload } from "./@type";
+import { AddPostPayload, GetAllPostsPayload, SetAllPostPayload } from "./@type";
 
 export enum LikeStatus {
 	Like = "like",
@@ -21,6 +21,7 @@ type initialType = {
 	searchedPost: CardListType,
 	searchedValue: string,
 	postsCount: number,
+	isAllPostsLoader: boolean,
 }
 const initialState: initialType = {
 	selectedPost: null,
@@ -34,6 +35,7 @@ const initialState: initialType = {
 	searchedPost: [],
 	searchedValue: "",
 	postsCount: 0,
+	isAllPostsLoader: false,
 };
 
 const postSlice = createSlice({
@@ -46,6 +48,9 @@ const postSlice = createSlice({
 			state.postsCount = postsCount
 		},
 
+		setAllPostsLoading: (state, action: PayloadAction<boolean>) => {
+			state.isAllPostsLoader = action.payload
+		},
 
 		getSinglePost: (_,__: PayloadAction<string>)=> {},
 		setSinglePost: (state, action: PayloadAction<CardType | null>)=> {
@@ -101,12 +106,14 @@ const postSlice = createSlice({
 			setSearchedPost: (state, action: PayloadAction<CardListType>) => {
 				state.searchedPost = action.payload
 			},
+			addNewPost: (_, __: PayloadAction<AddPostPayload>) => {}
 	},
 });
 
 export const { 
 	setSelectedPost, setPostVisible, setStatus, setBookmarkStatus, getAllPosts, setAllPosts,
-	getSinglePost, setSinglePost, getMyPost, setMyPost, getSearchedPost, setSearchedPost, 
+	getSinglePost, setSinglePost, getMyPost, setMyPost, getSearchedPost, setSearchedPost, addNewPost,
+	setAllPostsLoading,
 } = postSlice.actions;
 
 export default postSlice.reducer;
@@ -123,4 +130,5 @@ export const PostSelectors = {
 	getSearchedPost: (state: RootState) => state.post.searchedPost,
 	getSearchedValue: (state: RootState) => state.post.searchedValue,
 	getAllPostsCount: (state: RootState) => state.post.postsCount,
+	getAllPostsLoading: (state: RootState) => state.post.isAllPostsLoader
 }

@@ -14,6 +14,7 @@ import Success from "./Success";
 import { useDispatch, useSelector } from "react-redux";
 import { AuthSalectors, getUserInfo } from "../redux/reducers/authSlice";
 import Search from "./Search";
+import AddPost from "./AddPost";
 
 export enum RoutesList {
   Home = "/",
@@ -51,7 +52,7 @@ const Router = () => {
           <Route
             path={RoutesList.AddPost}
             element={
-              isLoggedIn ? <Home /> : <Navigate to={RoutesList.SignIn} />
+              isLoggedIn ? <AddPost /> : <Navigate to={RoutesList.SignIn} />
             }
           />
           <Route

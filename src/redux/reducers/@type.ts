@@ -22,9 +22,18 @@ export type SignInUserData = {
     password: string;
 }
 
+export type AddPostData = {
+    imge: any;
+    title: string;
+    lesson_num: string;
+    description: string;
+    text: string;
+}
+
 export type SignUpUserPauload = PayloadWithCallback<UserPayloadData>
 export type ActivateUserPayload = PayloadWithCallback<ActivateUserData>
 export type SignInUserPayload = PayloadWithCallback<SignInUserData>
+export type AddPostPayload = PayloadWithCallback<any>
 
 export type GetAllPostsPayload = {
     ordering?: string

@@ -62,5 +62,21 @@ const getMyPost = (token: string) => {
     );
 }
 
-export default {getPost, getSignlePost, signUpUser, activateUser, signInUser, getUserInfo, verifyToken, refreshToken, getMyPost}
+const addNewPost = (token: string, data: any) => {
+  return API.post("/blog/posts/", data, {
+    headers: {
+      "Content-Type": "multipart/form-data",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+};
+
+export default {
+    getPost, getSignlePost, signUpUser,
+    activateUser, signInUser, getUserInfo,
+    verifyToken, refreshToken, getMyPost, 
+    addNewPost,
+}
+
+
 

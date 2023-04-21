@@ -16,6 +16,7 @@ import { ButtonType, TabsNames } from "../../utils/@globalTypes";
 import { PER_PAGE } from "../../utils/constants";
 import classNames from "classnames";
 import Button from "../../components/Button";
+import Loader from "../../components/Loader";
 
 const Home = () => {
   enum Order {
@@ -38,6 +39,8 @@ const Home = () => {
   const favouriteList = useSelector(PostSelectors.getLikedPost);
   const myPosts = useSelector(PostSelectors.getMyPost);
   const favourites = useSelector(PostSelectors.getBookmarkStatus);
+
+  const isLoader = useSelector(PostSelectors.getAllPostsLoading);
 
   const postsCount = useSelector(PostSelectors.getAllPostsCount);
   const pagesCount = Math.ceil(postsCount / PER_PAGE);
@@ -100,30 +103,36 @@ const Home = () => {
           })}
         />
       </div>
-      <CardsList cardsList={getCurrentList()} />
-      <SelectedPostModal />
-      {activeTab !== TabsNames.Favourites &&
-        activeTab !== TabsNames.Popular && (
-          <ReactPaginate
-            pageCount={pagesCount}
-            onPageChange={onPageChange}
-            containerClassName={styles.pagesContainer}
-            pageClassName={styles.pageNumber}
-            breakClassName={styles.pageNumber}
-            breakLinkClassName={styles.linkPage}
-            activeLinkClassName={styles.linkPage}
-            pageLinkClassName={styles.linkPage}
-            activeClassName={styles.activePageNumber}
-            nextClassName={classNames(styles.arrowButton, {
-              [styles.blockedButton]: currentPage === pagesCount,
-            })}
-            previousClassName={classNames(styles.arrowButton, {
-              [styles.blockedButton]: currentPage === 1,
-            })}
-            previousLinkClassName={styles.linkPage}
-            nextLinkClassName={styles.linkPage}
-          />
-        )}
+
+      {isLoader ? (
+        <Loader />
+      ) : (
+        <>
+          <CardsList cardsList={getCurrentList()} />
+          {activeTab !== TabsNames.Popular &&
+            activeTab !== TabsNames.Favourites && (
+              <ReactPaginate
+                pageCount={pagesCount}
+                onPageChange={onPageChange}
+                containerClassName={styles.pagesContainer}
+                pageClassName={styles.pageNumber}
+                breakClassName={styles.pageNumber}
+                breakLinkClassName={styles.linkPage}
+                activeLinkClassName={styles.linkPage}
+                pageLinkClassName={styles.linkPage}
+                activeClassName={styles.activePageNumber}
+                nextClassName={classNames(styles.arrowButton, {
+                  [styles.blockedButton]: currentPage === pagesCount,
+                })}
+                previousClassName={classNames(styles.arrowButton, {
+                  [styles.blockedButton]: currentPage === 1,
+                })}
+                previousLinkClassName={styles.linkPage}
+                nextLinkClassName={styles.linkPage}
+              />
+            )}
+        </>
+      )}
     </div>
   );
 };

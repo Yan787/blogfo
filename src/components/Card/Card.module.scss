@@ -60,11 +60,14 @@
 }
 
 .title {
+    text-overflow: ellipsis;
     font-weight: 700;
     font-size: 32px;
     line-height: 44px;
     color: $Secondary;
     transition: all 1s;
+ max-height: 40px;
+ overflow: hidden;
     &:hover {
         transition: all 0s;
         color:$Primary-secondary !important;
@@ -74,6 +77,8 @@
 }
 
 .text {
+    overflow: hidden;
+    max-height: 145px;
     font-weight: 400;
     font-size: 16px;
     line-height: 28px;

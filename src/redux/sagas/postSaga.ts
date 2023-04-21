@@ -1,6 +1,6 @@
 import { ApiResponse } from "apisauce";
 import { all, call, put, takeLatest } from "redux-saga/effects";
-import { getAllPosts, setAllPosts, getSinglePost, setSinglePost, getMyPost, setMyPost, getSearchedPost, setSearchedPost } from "../reducers/postSlice";
+import { getAllPosts, setAllPosts, getSinglePost, setSinglePost, getMyPost, setMyPost, getSearchedPost, setSearchedPost, setAllPostsLoading } from "../reducers/postSlice";
 import { AllPostsRosponse } from "./@types";
 import API from "../api"
 import { CardType } from "../../utils/@globalTypes";
@@ -9,6 +9,7 @@ import callCheckingAuth from "./callCheckingAuth";
 import { GetAllPostsPayload } from "../reducers/@type";
 
 function* getAllPostWorker(action: PayloadAction<GetAllPostsPayload>) {
+    yield put(setAllPostsLoading(true))
     const { offset, ordering } = action.payload
     const {ok, data, problem}: ApiResponse<AllPostsRosponse> = yield call(API.getPost, offset, ordering)
     if(ok && data) {
@@ -16,6 +17,7 @@ function* getAllPostWorker(action: PayloadAction<GetAllPostsPayload>) {
     } else {
         console.warn("Error getting all Posts", problem)
     }
+    yield put(setAllPostsLoading(false))
 }
 
 function* getSearchPostWorker(action: PayloadAction<string>) {
