@@ -73,7 +73,7 @@ const Heder = () => {
   const onClickSearchButton = () => {
     setInputOpened(!isInputOpened);
     if (isInputOpened) {
-      dispatch(getSearchedPost(searchValue));
+      dispatch(getSearchedPost({ searchValue, isOverwrite: true, offset: 0 }));
       navigate(RoutesList.Search);
     }
   };

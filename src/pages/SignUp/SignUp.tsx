@@ -23,53 +23,84 @@ const SignUp = () => {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [nameTauched, setNameTauched] = useState(false);
+  const [emailTauched, setEmailTauched] = useState(false);
+  const [passwordTauched, setPasswordTauched] = useState(false);
+
   const [nameError, setNameError] = useState("");
   const [emailError, setEmailError] = useState("");
   const [passwordError, setpPsswordError] = useState("");
 
   useEffect(() => {
-    if (name.length === 0) {
+    if (name.length === 0 && nameTauched) {
       setNameError("Name is required field");
     } else {
       setNameError("");
     }
-  }, [name]);
+  }, [name, nameTauched]);
 
   useEffect(() => {
-    if (email.length === 0) {
+    if (email.length === 0 && emailTauched) {
       setEmailError("Email is required field");
     } else {
       setEmailError("");
     }
-  }, [email]);
+  }, [email, emailTauched]);
 
   useEffect(() => {
-    if (password !== confirmPassword) {
-      setpPsswordError("Passwords must match");
-    } else if (confirmPassword.length === 0 || confirmPassword.length === 0) {
-      setpPsswordError("Password is required field");
-    } else {
-      setpPsswordError("");
+    if (passwordTauched) {
+      if (password !== confirmPassword) {
+        setpPsswordError("Passwords must match");
+      } else if (confirmPassword.length === 0 || confirmPassword.length === 0) {
+        setpPsswordError("Password is required field");
+      } else {
+        setpPsswordError("");
+      }
     }
-  }, [password, confirmPassword]);
+  }, [passwordTauched, password, confirmPassword]);
 
   const isValid = useMemo(() => {
     return (
       nameError.length === 0 &&
       emailError.length === 0 &&
-      passwordError.length === 0
+      passwordError.length === 0 &&
+      nameTauched &&
+      emailTauched &&
+      passwordTauched
     );
-  }, [nameError, emailError, passwordError]);
+  }, [
+    nameError,
+    emailError,
+    passwordError,
+    nameTauched,
+    emailTauched,
+    passwordTauched,
+  ]);
 
   const onChangeName = (value: string) => {
     setName(value);
   };
+
+  const onBlurName = () => {
+    setNameTauched(true);
+  };
+
   const onChangeEmail = (value: string) => {
     setEmail(value);
   };
+
+  const onBlurEmail = () => {
+    setEmailTauched(true);
+  };
+
   const onChangePassword = (value: string) => {
     setPassword(value);
   };
+
+  const onBlurPassword = () => {
+    setPasswordTauched(true);
+  };
+
   const onChangeConfirmPassword = (value: string) => {
     setConfirmPassword(value);
   };
@@ -94,6 +125,7 @@ const SignUp = () => {
           title={"Name"}
           placeholder={"Your name"}
           errorText={nameError}
+          onBlur={onBlurName}
         />
 
         <Input
@@ -103,6 +135,7 @@ const SignUp = () => {
           title={"Email"}
           placeholder={"Your email"}
           errorText={emailError}
+          onBlur={onBlurEmail}
         />
         <Input
           value={password}
@@ -111,6 +144,7 @@ const SignUp = () => {
           title={"Password"}
           placeholder={"Your password"}
           errorText={passwordError}
+          onBlur={onBlurPassword}
         />
         <Input
           value={confirmPassword}
@@ -119,6 +153,7 @@ const SignUp = () => {
           title={"Confirm password"}
           placeholder={"Confirm password"}
           errorText={passwordError}
+          onBlur={onBlurPassword}
         />
 
         <div className={styles.button}>

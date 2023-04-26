@@ -36,11 +36,22 @@ export type SignInUserPayload = PayloadWithCallback<SignInUserData>
 export type AddPostPayload = PayloadWithCallback<any>
 
 export type GetAllPostsPayload = {
-    ordering?: string
-    search?: string
-    offset: number
+    ordering?: string;
+    search?: string;
+    offset: number;
 }
 export type SetAllPostPayload = {
     cardList: CardListType,
     postsCount: number,
+}
+export type GetSearchPostsPauload = {
+    searchValue: string;
+    isOverwrite: boolean;
+    offset: number;
+}
+
+export type SetSearchPostsPauload = {
+    cardList: CardListType;
+    postsCount: number;
+    isOverwrite: boolean;
 }

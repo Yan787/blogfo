@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import Card, { CardType } from "../../components/Card";
 import { CardListType } from "../../utils/@globalTypes";
 import { RootState } from "../store";
-import { AddPostPayload, GetAllPostsPayload, SetAllPostPayload } from "./@type";
+import { AddPostPayload, GetAllPostsPayload, GetSearchPostsPauload, SetAllPostPayload, SetSearchPostsPauload } from "./@type";
 
 export enum LikeStatus {
 	Like = "like",
@@ -21,6 +21,7 @@ type initialType = {
 	searchedPost: CardListType,
 	searchedValue: string,
 	postsCount: number,
+	serchedPostCount: number,
 	isAllPostsLoader: boolean,
 }
 const initialState: initialType = {
@@ -35,6 +36,7 @@ const initialState: initialType = {
 	searchedPost: [],
 	searchedValue: "",
 	postsCount: 0,
+	serchedPostCount: 0,
 	isAllPostsLoader: false,
 };
 
@@ -100,12 +102,19 @@ const postSlice = createSlice({
 				state.myPost = action.payload
 			},
 
-			getSearchedPost: (state, action: PayloadAction<string>) => {
-				state.searchedValue = action.payload
+			getSearchedPost: (state, action: PayloadAction<GetSearchPostsPauload>) => {
+				state.searchedValue = action.payload.searchValue
 			},
-			setSearchedPost: (state, action: PayloadAction<CardListType>) => {
-				state.searchedPost = action.payload
+			setSearchedPost: (state, action: PayloadAction<SetSearchPostsPauload>) => {
+				const { cardList, postsCount, isOverwrite } = action.payload
+				state.serchedPostCount = postsCount
+				if(isOverwrite) {
+					state.searchedPost = cardList
+				} else {
+					state.searchedPost.push(...cardList) 
+				}
 			},
+
 			addNewPost: (_, __: PayloadAction<AddPostPayload>) => {}
 	},
 });
@@ -130,5 +139,6 @@ export const PostSelectors = {
 	getSearchedPost: (state: RootState) => state.post.searchedPost,
 	getSearchedValue: (state: RootState) => state.post.searchedValue,
 	getAllPostsCount: (state: RootState) => state.post.postsCount,
-	getAllPostsLoading: (state: RootState) => state.post.isAllPostsLoader
+	getAllPostsLoading: (state: RootState) => state.post.isAllPostsLoader,
+	getSearchedPostCount: (state: RootState) => state.post.serchedPostCount,
 }

@@ -1,6 +1,6 @@
 import Lottie from "lottie-react";
 
-import styles from "./Loager.module.scss";
+import styles from "./Loader.module.scss";
 import groovyWalkAnimation from "../../assets/loading.json";
 
 const Loager = () => {

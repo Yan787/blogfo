@@ -1,12 +1,12 @@
 import { ApiResponse } from "apisauce";
-import { all, call, put, takeLatest } from "redux-saga/effects";
+import { all, call, put, takeLatest, takeLeading } from "redux-saga/effects";
 import { getAllPosts, setAllPosts, getSinglePost, setSinglePost, getMyPost, setMyPost, getSearchedPost, setSearchedPost, setAllPostsLoading } from "../reducers/postSlice";
 import { AllPostsRosponse } from "./@types";
 import API from "../api"
 import { CardType } from "../../utils/@globalTypes";
 import { PayloadAction } from "@reduxjs/toolkit";
 import callCheckingAuth from "./callCheckingAuth";
-import { GetAllPostsPayload } from "../reducers/@type";
+import { GetAllPostsPayload, GetSearchPostsPauload } from "../reducers/@type";
 
 function* getAllPostWorker(action: PayloadAction<GetAllPostsPayload>) {
     yield put(setAllPostsLoading(true))
@@ -20,10 +20,11 @@ function* getAllPostWorker(action: PayloadAction<GetAllPostsPayload>) {
     yield put(setAllPostsLoading(false))
 }
 
-function* getSearchPostWorker(action: PayloadAction<string>) {
-    const {ok, data, problem}: ApiResponse<AllPostsRosponse> = yield call(API.getPost, 0, '', action.payload)
+function* getSearchPostWorker(action: PayloadAction<GetSearchPostsPauload>) {
+    const {searchValue, isOverwrite, offset} = action.payload
+    const {ok, data, problem}: ApiResponse<AllPostsRosponse> = yield call(API.getPost, offset, '', searchValue)
     if(ok && data) {
-        yield put(setSearchedPost(data.results))
+        yield put(setSearchedPost({ cardList: data.results, postsCount: data.count, isOverwrite }))
     } else {
         console.warn("Error getting all Posts", problem)
     }
@@ -52,7 +53,7 @@ function* getMyPostWorker() {
 export default function* postSaga() {
     yield all ([
         takeLatest(getAllPosts, getAllPostWorker),
-        takeLatest(getSearchedPost, getSearchPostWorker),
+        takeLeading(getSearchedPost, getSearchPostWorker),
         takeLatest(getSinglePost, getSinglePostWorker),
         takeLatest(getMyPost, getMyPostWorker),
     ])
