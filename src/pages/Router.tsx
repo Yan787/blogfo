@@ -37,7 +37,7 @@ const Router = () => {
 
   useEffect(() => {
     isLoggedIn && dispatch(getUserInfo());
-  }, [isLoggedIn]);
+  }, [dispatch, isLoggedIn]);
 
   return (
     <BrowserRouter>

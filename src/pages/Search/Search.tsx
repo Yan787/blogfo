@@ -25,7 +25,7 @@ const Search = () => {
   useEffect(() => {
     const offset = (page - 1) * PER_PAGE;
     dispatch(getSearchedPost({ searchValue, isOverwrite: false, offset }));
-  }, [page]);
+  }, [dispatch, page, searchValue]);
 
   // useEffect(() => {
   //   return () => {

@@ -75,7 +75,7 @@ const Home = () => {
   useEffect(() => {
     const offset = PER_PAGE * (currentPage - 1);
     dispatch(getAllPosts({ offset, ordering }));
-  }, [currentPage, ordering]);
+  }, [dispatch, currentPage, ordering]);
 
   const onPageChange = ({ selected }: { selected: number }) => {
     setCurrentPage(selected + 1);

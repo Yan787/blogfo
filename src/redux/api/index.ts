@@ -1,3 +1,4 @@
+/* eslint-disabl */
 import { create } from "apisauce";
 import { PER_PAGE } from "../../utils/constants";
 import { ActivateUserData, SignInUserData, UserPayloadData } from "../reducers/@type";

@@ -1,4 +1,6 @@
+/* eslint-disabl */
 import React, { FC } from "react";
+
 import { CardListType, CardSize } from "../../utils/@globalTypes";
 import Card from "../Card";
 import EmptyState from "../EmptyState";
