@@ -1,7 +1,7 @@
 /* eslint-disabl */
 import { create } from "apisauce";
 import { PER_PAGE } from "../../utils/constants";
-import { ActivateUserData, SignInUserData, UserPayloadData } from "../reducers/@type";
+import { ActivateUserData, NewPasswordData, ResetPasswordData, SignInUserData, UserPayloadData } from "../reducers/@type";
 
 const API = create({
     baseURL: "https://studapi.teachmeskills.by"
@@ -72,11 +72,19 @@ const addNewPost = (token: string, data: any) => {
   });
 };
 
+const resetPassword = (data: ResetPasswordData) => {
+  return API.post("/auth/users/reset_password/", data)
+}
+
+const newPassword = (data: NewPasswordData) => {
+  return API.post("/auth/users/reset_password_confirm/", data);
+};
+
 export default {
     getPost, getSignlePost, signUpUser,
     activateUser, signInUser, getUserInfo,
     verifyToken, refreshToken, getMyPost, 
-    addNewPost,
+    addNewPost, resetPassword, newPassword
 }
 
 

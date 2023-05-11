@@ -50,10 +50,14 @@ const Heder = () => {
               key: RoutesList.AddPost,
             },
           ]),
-      // {
-      //   title: "Sign Up",
-      //   key: RoutesList.SignUp,
-      // },
+      // ...(!isLoggedIn
+      //   ? []
+      //   : [
+      {
+        title: "ResetPassword",
+        key: RoutesList.ResetPassword,
+      },
+      // ]),
       // {
       //   title: "Confirmation",
       //   key: RoutesList.RegConfirmation,

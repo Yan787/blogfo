@@ -19,7 +19,7 @@
 }
 
 .darkFrame {
-    background-color: $Secondary;
+    background-color: $Secondary !important;
     border: 1px solid $Gray;
     transition: all 1s;
 }

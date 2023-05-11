@@ -1,9 +1,9 @@
 import { all, call, put, takeLatest } from "redux-saga/effects"
 import { ApiResponse } from "apisauce"
-import { activateUser, getUserInfo, logoutUser, setLoggedIn, setUserInfo, signInUser, signUser } from "../reducers/authSlice"
+import { activateUser, getUserInfo, logoutUser, newPassword, resetPassword, setLoggedIn, setUserInfo, signInUser, signUser } from "../reducers/authSlice"
 import API from "../api"
 import { PayloadAction } from "@reduxjs/toolkit"
-import { ActivateUserPayload, AddPostPayload, SignInUserPayload, SignUpUserPauload } from "../reducers/@type"
+import { ActivateUserPayload, AddPostPayload, NewPasswordPayload, ResetPasswordPayload, SignInUserPayload, SignUpUserPauload } from "../reducers/@type"
 import { getUserInfoResponse, SignInResponse, signUpUserResponse } from "./@types"
 import { ACCESS_TOKEN_KEY, REFRESH_TOKEN_KEY } from "../../utils/constants"
 import callCheckingAuth from "./callCheckingAuth"
@@ -71,6 +71,27 @@ function* addNewPostWorker(actions: PayloadAction<AddPostPayload>) {
     }
 }
 
+function* resetPasswordWorker(actions: PayloadAction<ResetPasswordPayload>) {
+    const {data, callback} = actions.payload
+    const {ok, problem}: ApiResponse<undefined> = yield call(API.resetPassword, data)
+    if(ok) {
+        callback()
+    } else {
+        console.warn("Error sign acti user", problem)
+    }
+}
+
+function* newPasswordWorker(actions: PayloadAction<NewPasswordPayload>) {
+    const {data, callback} = actions.payload
+    const {ok, problem}: ApiResponse<undefined> = yield call(API.newPassword, data)
+    if(ok) {
+        callback()
+    } else {
+        console.warn("Error sign acti user", problem)
+    }
+}
+
+
 export default function* postSaga() {
     yield all ([
         takeLatest(signUser, signUpUserWorker),
@@ -79,6 +100,8 @@ export default function* postSaga() {
         takeLatest(logoutUser, logoutUserWorker),
         takeLatest(getUserInfo, getUserInfoWorker),
         takeLatest(addNewPost, addNewPostWorker),
+        takeLatest(resetPassword, resetPasswordWorker),
+        takeLatest(newPassword, newPasswordWorker),
     ])
 }
 

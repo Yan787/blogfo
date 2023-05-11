@@ -30,10 +30,22 @@ export type AddPostData = {
     text: string;
 }
 
+export type ResetPasswordData = {
+    email: string;
+}
+
+export type NewPasswordData = {
+    uid: string;
+    token: string;
+    new_password: string;
+}
+
 export type SignUpUserPauload = PayloadWithCallback<UserPayloadData>
 export type ActivateUserPayload = PayloadWithCallback<ActivateUserData>
 export type SignInUserPayload = PayloadWithCallback<SignInUserData>
 export type AddPostPayload = PayloadWithCallback<any>
+export type ResetPasswordPayload = PayloadWithCallback<ResetPasswordData>
+export type NewPasswordPayload = PayloadWithCallback<NewPasswordData>
 
 export type GetAllPostsPayload = {
     ordering?: string;

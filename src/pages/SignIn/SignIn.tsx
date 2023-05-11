@@ -1,5 +1,6 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import classNames from "classnames";
+import * as yup from "yup";
 
 import styles from "./SignIn.module.scss";
 import Buttom from "../../components/Button";
@@ -19,31 +20,10 @@ const SingIn = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [validationError, setValidationError] = useState<any>({});
 
   const dispatch = useDispatch();
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (email.length === 0) {
-      setEmailError("Email is required field");
-    } else {
-      setEmailError("");
-    }
-  }, [email]);
-
-  useEffect(() => {
-    if (password.length === 0) {
-      setPasswordError("Email is required field");
-    } else {
-      setPasswordError("");
-    }
-  }, [password]);
-
-  const isValid = useMemo(() => {
-    return emailError.length === 0 && passwordError.length === 0;
-  }, [emailError, passwordError]);
 
   const onChangeEmail = (value: string) => {
     setEmail(value);
@@ -61,6 +41,31 @@ const SingIn = () => {
     );
   };
 
+  useEffect(() => {
+    const schema = yup.object().shape({
+      email: yup.string().required("Почта это обязательное поле"),
+      password: yup
+        .string()
+        .required("Пароль должен быть больше 8 символов")
+        .min(8),
+    });
+
+    const validator = async () => {
+      const validationResalt = await schema
+        .validate({ email, password }, { abortEarly: false })
+        .catch((err: any) => {
+          let errorObject: any = {};
+          err.inner.map((error: any) => {
+            const errorPath = `${error.path}`;
+            errorObject[errorPath] = error.errors;
+          });
+          setValidationError(errorObject);
+        });
+      validationResalt && setValidationError({});
+    };
+    validator();
+  }, [email, password]);
+
   return (
     <div className={classNames({ [styles.darkWrapper]: theme === Theme.Dark })}>
       <FormPage title={"Sign In"} />
@@ -72,8 +77,9 @@ const SingIn = () => {
             type={"text"}
             title={"Email"}
             placeholder={"Your email"}
-            errorText={emailError}
+            errorText={validationError?.email}
           />
+
           <div>
             <Input
               value={password}
@@ -81,9 +87,8 @@ const SingIn = () => {
               type={"password"}
               title={"Password"}
               placeholder={"Your password"}
-              errorText={passwordError}
+              errorText={validationError?.password}
             />
-
             <div
               className={classNames(styles.forgotPass, {
                 [styles.darkforgotPass]: theme === Theme.Dark,
@@ -98,7 +103,7 @@ const SingIn = () => {
             className={styles.btn}
             title={"Sign In"}
             type={ButtonType.Primary}
-            disabled={!isValid}
+            // disabled={!isValid}
             onClick={onSignInClick}
           />
           <div

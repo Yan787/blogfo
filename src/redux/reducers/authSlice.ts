@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { ACCESS_TOKEN_KEY } from "../../utils/constants";
 import { getUserInfoResponse } from "../sagas/@types";
 import { RootState } from "../store";
-import { ActivateUserPayload, SignInUserPayload, SignUpUserPauload } from "./@type";
+import { ActivateUserPayload, NewPasswordPayload, ResetPasswordPayload, SignInUserPayload, SignUpUserPauload } from "./@type";
 
 type initialType = {
     isLoggedIn: boolean; 
@@ -33,10 +33,12 @@ const authSlice = createSlice({
         setUserInfo: (state, actions: PayloadAction<getUserInfoResponse | null>) => {
             state.userInfo = actions.payload
         },
+        resetPassword: (_,__: PayloadAction<ResetPasswordPayload>) => {},
+        newPassword: (_, __: PayloadAction<NewPasswordPayload>) => {},
     }
 })
 
-export const {signUser, activateUser, signInUser, setLoggedIn, logoutUser, getUserInfo, setUserInfo} = authSlice.actions
+export const {signUser, activateUser, signInUser, setLoggedIn, logoutUser, getUserInfo, setUserInfo, resetPassword, newPassword} = authSlice.actions
 
 export default authSlice.reducer
 
