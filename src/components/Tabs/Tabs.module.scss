@@ -12,7 +12,9 @@
     font-size: 16px;
     line-height: 24px;
     color: $Secondary;
+    transition: color 1s;
     &:hover {
+        transition: color 0s;
         cursor: pointer;
         color: $Primary;
     }
@@ -20,6 +22,7 @@
 
 .activeTab {
     border-bottom: 3px solid $Secondary;
+    transition: all 1s;
 }
 
 .disabled {
@@ -32,13 +35,26 @@
 
 .darkContiner { 
     .tab {
+        transition: all 1s;
         color: $White;
         &:hover {
+            transition: color 0s;
             color: $Primary-secondary;
         }
     }
     .activeTab {
-        border-bottom: 3px solid $White;
+        border-bottom: 3px solid White;
+        transition: all 1s;
     }
     
+}
+
+.darkDisabled {
+        color: $Gray !important;
+        transition: color 0s;
+        &:hover {
+            transition: color 0s;
+            cursor: not-allowed;
+            color: $Gray;
+        }
 }

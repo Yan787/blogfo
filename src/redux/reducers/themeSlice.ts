@@ -2,7 +2,7 @@ import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { Theme } from "../../context/Theme/Context";
 import { RootState } from "../store";
 const initialState = ({
-    themeValue: Theme.Dark
+    themeValue: Theme.Light
 })
 
 const themeSlice = createSlice({

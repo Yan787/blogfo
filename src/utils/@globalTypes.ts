@@ -15,6 +15,7 @@ export enum CardSize {
     Large,
     Medium,
     Small,
+    Search,
 }
 
 export enum ButtonType {
@@ -22,3 +23,11 @@ export enum ButtonType {
     Secondary = `Secondary`,
     Errer = `Errer`,
 }
+
+export enum TabsNames {
+    All,
+    MyPosts,
+    Popular,
+    Favourites,
+}
+

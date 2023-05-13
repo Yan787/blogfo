@@ -1,10 +1,8 @@
 @import "./src/assets/colors";
+@import "./src/assets/mixins";
+
 .title {
-    font-weight: 600;
-    font-size: 16px;
-    line-height: 20px;
-    color: $Secondary;
-    margin-bottom: 8px;
+   @include title
 }
 
 .input {
@@ -33,12 +31,14 @@
 
 .errorText {
     border: 2px solid $Error;
+
     &:hover {
         outline: 0;
     }
 }
 
 .err {
+
     margin-top: 16px;
     font-weight: 400;
     font-size: 16px;
@@ -51,5 +51,13 @@
 }
 
 .darkTitle {
+    color: $White;
+}
+
+.validText {
+    color: $Error;
+}
+
+.darkText {
     color: $White;
 }

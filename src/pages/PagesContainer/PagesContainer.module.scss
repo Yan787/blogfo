@@ -11,6 +11,11 @@
 .darkContainer {
     flex: 1;
     background-color: $Secondary;
+    transition: all 1s;
+}
+
+.lightContainer {
+    transition: all 1s;
 }
 
 .mainInfo {
@@ -29,7 +34,6 @@
     justify-content: space-between;
     padding: 33px 0;
     border-top: 1px solid $Gray;
-    margin-top: 152px;
     div {
         color: $Gray;
     }

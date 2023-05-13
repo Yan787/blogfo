@@ -6,9 +6,29 @@ import { ButtonType } from "../../utils/@globalTypes";
 import styles from "./RegConfirmation.module.scss";
 import classNames from "classnames";
 import { Theme, useThemeContext } from "../../context/Theme/Context";
+import { useNavigate, useParams } from "react-router-dom";
+import { RoutesList } from "../Router";
+import { useDispatch } from "react-redux";
+import { activateUser } from "../../redux/reducers/authSlice";
 
 const RegConfirmation = () => {
   const { theme } = useThemeContext();
+  const { uid, token } = useParams();
+
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  const onConfirmationButtonClick = () => {
+    if (uid && token) {
+      dispatch(
+        activateUser({
+          data: { uid, token },
+          callback: () => navigate(RoutesList.Success),
+        })
+      );
+    }
+  };
+
   return (
     <div>
       <FormPage title={"Registration Confirmation"} />
@@ -23,9 +43,9 @@ const RegConfirmation = () => {
             .Please, check your email
           </div>
           <Button
-            title={"Go to home"}
+            title={"Confirm"}
             type={ButtonType.Primary}
-            onClick={() => {}}
+            onClick={onConfirmationButtonClick}
             className={styles.btn}
           />
         </div>
