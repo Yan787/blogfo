@@ -10,7 +10,7 @@ type initialType = {
 }
 
 const initialState: initialType = {
-    isLoggedIn: !! localStorage.getItem(ACCESS_TOKEN_KEY),
+    isLoggedIn: !! localStorage.getItem(ACCESS_TOKEN_KEY), 
     userInfo: null,
 }
 
