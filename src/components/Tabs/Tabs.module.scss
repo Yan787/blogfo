@@ -6,6 +6,21 @@
     gap: 80px;
 }
 
+@media screen and (max-width: 360px) {
+    .continer {
+        gap: 0px;
+    }
+
+    .tab {
+        transform: scale(0.7);
+        font-size: 14px !important;
+        padding: 14px 20px !important;
+    }
+
+    .continer {
+        border-bottom: none !important;
+    }
+}
 .tab {
     padding: 40px 24px;
     font-weight: 600;

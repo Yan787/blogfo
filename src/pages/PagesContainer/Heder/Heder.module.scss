@@ -9,6 +9,50 @@
     background-color: $Primary;
 }
 
+@media screen and (max-width: 768px) {
+    .imputLoggedIn {
+        min-width: 300px !important;
+    }
+
+    .imput {
+        width: 504px !important;
+    }
+
+    .container {
+        height: 77px;
+    }
+
+    .imput {
+        min-height: 77px !important;
+    }
+
+    .mainContainer {
+        top: 77px !important;
+        width: 216px;
+    }
+
+    .authButton {
+        height: 67px !important;
+    }
+
+    .navButton {
+        height: 70px;
+        font-size: 15px !important;
+    }
+}
+
+
+@media screen and (max-width: 360px) {
+    .container {
+        transform: scale(0.6);
+        position: relative;
+        top: -16px;
+        left: -71.9px;
+        top: -16px;
+        left: -119px;
+        width: 590.1px;
+    }
+}
 .infoContainer {
     display: flex;
 }
@@ -17,7 +61,7 @@
     min-height: 84px;
     background-color: $Primary-secondary !important;
     color: $White;
-    width: 1296.4px !important;
+    width: 1296.4px;
     &::placeholder {
         color: rgba(255, 255, 255, 0.5)
     }
@@ -29,7 +73,7 @@
 }
 
 .imputLoggedIn {
-    min-width: 1443.7px !important;
+    min-width: 1443.7px;
 }
 
 .searchIconColor {
@@ -40,7 +84,7 @@
 }
 
 .border {
-    border: 1px solid $Primary-secondary !important;
+    border-left: 1px solid #5360CD !important;
 
 }
 

@@ -4,6 +4,13 @@
 	background: rgba(38, 34, 47, 0.5);
 	}
 	
+@media screen and (max-width: 768px) {
+	.orderButton {
+		position: relative;
+		top: -7px;
+		left: 383.1px;
+	}
+}
 	.pagesContainer {
 	margin: 72px 0;
 	display: flex;

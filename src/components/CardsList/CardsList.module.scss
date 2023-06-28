@@ -17,3 +17,9 @@
     flex-direction: column;
     gap: 38.1px;
 }
+@media screen and (max-width: 360px) {
+    .container {
+        flex-wrap: wrap;
+    }
+
+}

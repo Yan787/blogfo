@@ -1,7 +1,7 @@
 {
   "name": "blogfo",
   "version": "0.1.0",
-  "homepage": "https://Yan787.github.io/blogfo",
+
   "private": true,
   "dependencies": {
     "@reduxjs/toolkit": "^1.9.3",
@@ -25,7 +25,7 @@
     "react-paginate": "^8.2.0",
     "react-redux": "^8.0.5",
     "react-router-dom": "^6.8.2",
-    "react-scripts": "5.0.1",
+    "react-scripts": "^5.0.1",
     "redux-persist": "^6.0.0",
     "redux-saga": "^1.2.3",
     "sass": "^1.58.1",

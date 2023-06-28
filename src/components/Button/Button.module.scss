@@ -13,6 +13,13 @@
     }
 }
 
+@media screen and (max-width: 768px) {
+    .PrimaryButton {
+        padding: 27px 27px;
+    }
+
+
+}
 .SecondaryButton {
     @include button;
     background-color: $Light;

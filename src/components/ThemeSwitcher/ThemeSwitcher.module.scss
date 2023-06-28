@@ -7,6 +7,12 @@
     cursor: pointer
 }
 
+@media screen and (max-width: 768px) {
+    .button {
+        height: 53px !important;
+    }
+
+}
 .button {
     display: flex;
     align-items: center;

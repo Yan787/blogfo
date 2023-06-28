@@ -28,6 +28,21 @@
     margin-top: 156px;
 }
 
+@media screen and (max-width: 768px) {
+    .mainInfo {
+        padding-left: 50px;
+        padding-right: 50px;
+    }
+}
+
+@media screen and (max-width: 360px) {
+    .mainInfo {
+        padding-left: 16px;
+        padding-right: 16px;
+        margin-top: -3px;
+
+    }
+}
 .footer {
     display: flex;
     flex-direction: row;
